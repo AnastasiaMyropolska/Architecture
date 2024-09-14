@@ -21,7 +21,6 @@ struct ContentView: View {
 		}
 		.onAppear {
 			let region = MKCoordinateRegion(center: PointOfInterest.hofbrauhaus, span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5))
-			//Searcher(searchResults: $searchResult).fetchPointsOfInterests(inRegion: region)
 			Parser().parse()
 		}
 	}
