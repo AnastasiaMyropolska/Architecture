@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Maps
+//  Architecture
 //
 //  Created by Anastasia Myropolska on 15.06.24.
 //
@@ -12,16 +12,24 @@ struct ContentView: View {
 
 	//@StateObject var manager = LocationManager()
 	@State private var searchResult: [MKMapItem] = []
+	@State private var artefacts: [Artefact]?
+	//@State var SanFranciscoRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+
+	@State var position = MapCameraPosition.userLocation(followsHeading: true, fallback: MapCameraPosition.region(MKCoordinateRegion(center: PointOfInterest.hofbrauhaus, span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5))))
 
 	var body: some View {
-		Map {
+		Map(position: $position) {
 			ForEach (searchResult, id: \.self) { result in
 				Marker(item: result)
 			}
-		}
-		.onAppear {
-			let region = MKCoordinateRegion(center: PointOfInterest.hofbrauhaus, span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5))
-			Parser().parse()
+		}.onAppear() {
+			Task {
+				await artefacts = Parser().parse()
+				for artefact in artefacts! {
+					let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: artefact.artefactsLocation.location))
+					searchResult.append(mapItem)
+				}
+			}
 		}
 	}
 }

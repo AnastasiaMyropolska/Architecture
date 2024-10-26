@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22198ED32CCD050700B6D54E /* Artefact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22198ED22CCD050700B6D54E /* Artefact.swift */; };
 		22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACC1D42C568BBE001A3D0F /* LocationManager.swift */; };
-		22B6569C2C1D93E200EEE26F /* MapsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569B2C1D93E200EEE26F /* MapsApp.swift */; };
+		22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */; };
 		22B6569E2C1D93E200EEE26F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569D2C1D93E200EEE26F /* ContentView.swift */; };
 		22B656A02C1D93E400EEE26F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22B6569F2C1D93E400EEE26F /* Assets.xcassets */; };
 		22B656A42C1D93E400EEE26F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22B656A32C1D93E400EEE26F /* Preview Assets.xcassets */; };
@@ -37,10 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22198ED22CCD050700B6D54E /* Artefact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artefact.swift; sourceTree = "<group>"; };
 		22980D162C5E7C770021CF8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22ACC1D42C568BBE001A3D0F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		22B656982C1D93E200EEE26F /* Architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Architecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		22B6569B2C1D93E200EEE26F /* MapsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsApp.swift; sourceTree = "<group>"; };
+		22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitectureApp.swift; sourceTree = "<group>"; };
 		22B6569D2C1D93E200EEE26F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22B6569F2C1D93E400EEE26F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22B656A32C1D93E400EEE26F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -101,13 +103,11 @@
 		22B6569A2C1D93E200EEE26F /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				22E843572C7BAD0B0037F215 /* Ressources */,
 				22E843542C7BA84B0037F215 /* Engine */,
-				22B6569B2C1D93E200EEE26F /* MapsApp.swift */,
+				22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */,
 				22B6569D2C1D93E200EEE26F /* ContentView.swift */,
 				22ACC1D42C568BBE001A3D0F /* LocationManager.swift */,
-				22B6569F2C1D93E400EEE26F /* Assets.xcassets */,
-				22980D162C5E7C770021CF8B /* Info.plist */,
+				22E843572C7BAD0B0037F215 /* Ressources */,
 				22B656A22C1D93E400EEE26F /* Preview Content */,
 			);
 			path = Architecture;
@@ -142,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				22E843552C7BA86A0037F215 /* Parser.swift */,
+				22198ED22CCD050700B6D54E /* Artefact.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -149,6 +150,8 @@
 		22E843572C7BAD0B0037F215 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				22B6569F2C1D93E400EEE26F /* Assets.xcassets */,
+				22980D162C5E7C770021CF8B /* Info.plist */,
 				22E843582C7BAD510037F215 /* 20240824.0001.json */,
 			);
 			path = Ressources;
@@ -285,9 +288,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22198ED32CCD050700B6D54E /* Artefact.swift in Sources */,
 				22E843562C7BA86A0037F215 /* Parser.swift in Sources */,
 				22B6569E2C1D93E200EEE26F /* ContentView.swift in Sources */,
-				22B6569C2C1D93E200EEE26F /* MapsApp.swift in Sources */,
+				22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */,
 				22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,7 +461,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Architecture/Info.plist;
+				INFOPLIST_FILE = Architecture/Ressources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -498,7 +502,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Architecture/Info.plist;
+				INFOPLIST_FILE = Architecture/Ressources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

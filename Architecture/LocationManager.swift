@@ -1,6 +1,6 @@
 //
 //  LocationManager.swift
-//  Maps
+//  Architecture
 //
 //  Created by Anastasia Myropolska on 28.07.24.
 //
