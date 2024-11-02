@@ -9,6 +9,7 @@ import MapKit
 
 // variables are named the same as in json structure
 struct Artefact: Decodable {
+
 	struct ArtefactsLocation: Decodable {
 		var location: CLLocationCoordinate2D {
 			return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -21,4 +22,10 @@ struct Artefact: Decodable {
 
 	let artefacts_name: String
 	let artefactsLocation: ArtefactsLocation
+
+	func convertToMapItem() -> MKMapItem {
+		let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.artefactsLocation.location))
+		mapItem.name = self.artefacts_name
+		return mapItem
+	}
 }
