@@ -6,19 +6,25 @@
 //
 
 import Foundation
+import MapKit
 
 enum NetworkingError: LocalizedError {
 	case resourceNotFound
 	case serverError
 }
 
-// do we need an actor here or URLSession.shared.data() is automatically executed in background?
+struct Request {
+	let region: MKCoordinateRegion // must be initiated with visible region on the map
+}
+
 struct Parser {
 
 	private struct ResponseData: Decodable {
 		var artefacts: [Artefact]
 	}
-	
+
+	let request: Request // use region to request from server
+
 	func parse() async throws -> [Artefact] {
 		guard let url = Bundle.main.url(forResource: "20240824.0001", withExtension: "json") else {
 			throw NetworkingError.resourceNotFound
@@ -31,7 +37,9 @@ struct Parser {
 //			throw NetworkingError.serverError
 //		}
 
-		return try JSONDecoder().decode(ResponseData.self, from: data).artefacts
+		let artefacts = try JSONDecoder().decode(ResponseData.self, from: data).artefacts
+
+		return Array(artefacts.prefix(5))
 	}
 }
 
