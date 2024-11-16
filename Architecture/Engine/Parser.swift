@@ -32,7 +32,7 @@ struct Parser {
 
 		let (data, responce) = try await URLSession.shared.data(from: url)
 
-// enable once running on server
+// todo: enable once running on server
 //		guard (responce as? HTTPURLResponse)?.statusCode == 200 else {
 //			throw NetworkingError.serverError
 //		}
@@ -40,6 +40,16 @@ struct Parser {
 		let artefacts = try JSONDecoder().decode(ResponseData.self, from: data).artefacts
 
 		return Array(artefacts.prefix(5))
+
+		// todo: try to use async sequence
+//		let result: (bytes: URLSession.AsyncBytes, response: URLResponse) = try await URLSession.shared.bytes(from: url, delegate: nil)
+//		for try await line in result.bytes.lines {
+//		  let artefacts = try JSONDecoder().decode(ResponseData.self, from: Data(line.utf8))
+//		  await updateFavoriteCount(with: photoMetadata) // 👈🏻 need to execute in the main actor
+//		}
+// don't know if this will work and how to handle async array in ContentView. This should return not array of bytes, but array of artifacts
+
+
 	}
 }
 

@@ -5,87 +5,54 @@
 //  Created by Anastasia Myropolska on 28.07.24.
 //
 
-import Foundation
+import SwiftUI
 import CoreLocation
 
-//class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
-//
-//	@Published var authorizationStatus : CLAuthorizationStatus = .notDetermined
-//	private let locationManager = CLLocationManager()
-//	@Published var coordinates : CLLocationCoordinate2D?
-//
-//	override init() {
-//		super.init()
-//		locationManager.delegate = self
-//		locationManager.desiredAccuracy=kCLLocationAccuracyHundredMeters
-//		locationManager.startUpdatingLocation()
-//	}
-//
-//	func requestLocationManager()  {
-//		locationManager.requestWhenInUseAuthorization()
-//	}
-//
-//	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-//		authorizationStatus = manager.authorizationStatus
-//	}
-//
-//	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//		guard let location = locations.last else {return}
-//
-//		coordinates = location.coordinate
-//	}
-//}
-
-import MapKit
-
-final class LocationManager: NSObject, ObservableObject {
-	private let locationManager = CLLocationManager()
-
-	@Published var region = MKCoordinateRegion(
-		center: .init(latitude: 37.334_900, longitude: -122.009_020),
-		span: .init(latitudeDelta: 0.2, longitudeDelta: 0.2)
-	)
+@Observable
+class LocationManager: NSObject, CLLocationManagerDelegate {
+	
+	/*@ObservationIgnored*/ let manager = CLLocationManager()
+	var userLocation: CLLocation?
+	var isAuthorized = false
 
 	override init() {
 		super.init()
-
-		self.locationManager.delegate = self
-		self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-		self.setup()
+		manager.delegate = self
+		startLocationServices()
 	}
 
-	func setup() {
-		switch locationManager.authorizationStatus {
-		//If we are authorized then we request location just once, to center the map
-		case .authorizedWhenInUse:
-			locationManager.requestLocation()
-		//If we don´t, we request authorization
-		case .notDetermined:
-			locationManager.startUpdatingLocation()
-			locationManager.requestWhenInUseAuthorization()
-		default:
-			break
+	func startLocationServices() {
+		if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
+			manager.startUpdatingLocation()
+			isAuthorized = true
+		} else {
+			isAuthorized = false
+			manager.requestWhenInUseAuthorization()
 		}
-	}
-}
-
-extension LocationManager: CLLocationManagerDelegate {
-	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-		guard .authorizedWhenInUse == manager.authorizationStatus else { return }
-		locationManager.requestLocation()
-	}
-
-	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-		print("Something went wrong: \(error)")
 	}
 
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		locationManager.stopUpdatingLocation()
-		locations.last.map {
-			region = MKCoordinateRegion(
-				center: $0.coordinate,
-				span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
-			)
+		userLocation = locations.last
+	}
+
+	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+		switch manager.authorizationStatus {
+		case .authorizedAlways, .authorizedWhenInUse:
+			isAuthorized = true
+			manager.requestLocation()
+		case .notDetermined:
+			isAuthorized = false
+			manager.requestWhenInUseAuthorization()
+		case .denied:
+			isAuthorized = false
+		default:
+			isAuthorized = true
+			startLocationServices()
 		}
 	}
+
+	func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+		print("error: \(error.localizedDescription)")
+	}
 }
+

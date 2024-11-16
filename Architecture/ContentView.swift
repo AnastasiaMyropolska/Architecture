@@ -10,7 +10,8 @@ import MapKit
 
 struct ContentView: View {
 
-	@State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+	private var locationManager = LocationManager()
+	@State private var cameraPosition: MapCameraPosition = .userLocation(fallback: .automatic)
 	@State private var visibleRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.1967608, longitude: 11.4132661), span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5)) // has to be @State, otherwise not possible to change in onMapCameraChange
 	// position.followsUserLocation = true
 
@@ -20,12 +21,12 @@ struct ContentView: View {
 	@State private var route: MKRoute?
 
 	var body: some View {
-		Map(position: $position, selection: $selectedResult) {
+		Map(position: $cameraPosition, selection: $selectedResult) {
 			ForEach (markers, id: \.self) { marker in
 				Marker(item: marker)
 			}
 
-			UserAnnotation()
+			UserAnnotation() // user's location
 		}
 		.task {
 			// guard markers.isEmpty else { return }
