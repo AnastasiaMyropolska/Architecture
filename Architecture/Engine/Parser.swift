@@ -39,7 +39,10 @@ struct Parser {
 
 		let artefacts = try JSONDecoder().decode(ResponseData.self, from: data).artefacts
 
-		return Array(artefacts.prefix(5))
+		// for now filter out here; once requested from server using region, it will be filtered on a server
+		let visibleArtefacts = artefacts.filter{ request.region.contains( $0.artefactsLocation.location) }
+
+		return Array(visibleArtefacts/*.prefix(5)*/)
 
 		// todo: try to use async sequence
 //		let result: (bytes: URLSession.AsyncBytes, response: URLResponse) = try await URLSession.shared.bytes(from: url, delegate: nil)
@@ -50,6 +53,30 @@ struct Parser {
 // don't know if this will work and how to handle async array in ContentView. This should return not array of bytes, but array of artifacts
 
 
+	}
+}
+
+extension MKCoordinateRegion {
+	func contains(_ coordinate: CLLocationCoordinate2D) -> Bool {
+		let regionSpan = self.span
+
+		let topLeft = MKMapPoint(CLLocationCoordinate2D(
+			latitude: center.latitude + regionSpan.latitudeDelta / 2,
+			longitude: center.longitude - regionSpan.longitudeDelta / 2
+		))
+
+		let bottomRight = MKMapPoint(CLLocationCoordinate2D(
+			latitude: center.latitude - regionSpan.latitudeDelta / 2,
+			longitude: center.longitude + regionSpan.longitudeDelta / 2
+		))
+
+		let mapRect = MKMapRect(
+			origin: MKMapPoint(x: min(topLeft.x, bottomRight.x), y: min(topLeft.y, bottomRight.y)),
+			size: MKMapSize(width: abs(topLeft.x - bottomRight.x), height: abs(topLeft.y - bottomRight.y))
+		)
+
+		let point = MKMapPoint(coordinate)
+		return mapRect.contains(point)
 	}
 }
 

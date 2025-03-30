@@ -12,7 +12,7 @@ struct ContentView: View {
 
 	private var locationManager = LocationManager()
 	@State private var cameraPosition: MapCameraPosition = .userLocation(fallback: .automatic)
-	@State private var visibleRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.1967608, longitude: 11.4132661), span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5)) // has to be @State, otherwise not possible to change in onMapCameraChange
+	@State private var visibleRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.1967608, longitude: 11.4132661), span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5)) // has to be @State, otherwise not possible to change in onMapCameraChange // TODO: wft is this, why hardcoded? we should use user's location
 	// position.followsUserLocation = true
 
 	@State private var markers: [MKMapItem] = []
@@ -55,12 +55,12 @@ struct ContentView: View {
 				}
 			}
 		}
-		.onChange(of: selectedResult) {
-			getDirection()
-		}
+//		.onChange(of: selectedResult) {
+//			getDirection()
+//		}
 		.safeAreaInset(edge: .bottom) {
 			if let selectedResult {
-				ItemInfoView(selectedResult: selectedResult, route: route)
+				ItemInfoView(selectedMarker: selectedResult, route: route)
 					.frame(height: 128)
 					.clipShape(RoundedRectangle(cornerRadius: 10))
 					.padding([.top, .horizontal])
@@ -73,19 +73,19 @@ struct ContentView: View {
 		}
 	}
 
-	func getDirection() {
-		route = nil
-		guard let selectedResult else { return }
-
-		let request = MKDirections.Request()
-		request.source = MKMapItem.forCurrentLocation()
-		request.destination = selectedResult
-
-		Task {
-			let directions = MKDirections(request: request)
-			let responce = try? await directions.calculate()
-			route = responce?.routes.first
-		}
-	}
+//	func getDirection() {
+//		route = nil
+//		guard let selectedResult else { return }
+//
+//		let request = MKDirections.Request()
+//		request.source = MKMapItem.forCurrentLocation()
+//		request.destination = selectedResult
+//
+//		Task {
+//			let directions = MKDirections(request: request)
+//			let responce = try? await directions.calculate()
+//			route = responce?.routes.first
+//		}
+//	}
 }
 

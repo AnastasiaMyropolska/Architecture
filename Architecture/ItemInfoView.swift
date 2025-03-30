@@ -12,7 +12,7 @@ struct ItemInfoView: View {
 
 	@State private var lookAroundScene: MKLookAroundScene?
 
-	var selectedResult: MKMapItem
+	var selectedMarker: MKMapItem
 	var route: MKRoute?
 
 	private var travelTime: String? {
@@ -27,7 +27,7 @@ struct ItemInfoView: View {
 	private func getLookAroundScene() {
 		lookAroundScene = nil
 		Task {
-			let request = MKLookAroundSceneRequest(mapItem: selectedResult)
+			let request = MKLookAroundSceneRequest(mapItem: selectedMarker)
 			lookAroundScene = try? await request.scene
 		}
 	}
@@ -36,7 +36,7 @@ struct ItemInfoView: View {
 		LookAroundPreview(initialScene: lookAroundScene)
 			.overlay(alignment: .bottomTrailing) {
 				HStack {
-					Text("\(selectedResult.name)")
+					Text("\(selectedMarker.name ?? "")")
 					if let travelTime {
 						Text("\(travelTime)")
 					}
@@ -48,7 +48,7 @@ struct ItemInfoView: View {
 			.onAppear() {
 				getLookAroundScene()
 			}
-			.onChange(of: selectedResult) { result in
+			.onChange(of: selectedMarker) { result in
 				getLookAroundScene()
 			}
 	}
