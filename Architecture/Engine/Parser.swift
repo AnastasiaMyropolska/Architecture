@@ -26,7 +26,7 @@ struct Parser {
 	let request: Request // use region to request from server
 
 	func parse() async throws -> [Artefact] {
-		guard let url = Bundle.main.url(forResource: "20240824.0001_small", withExtension: "json") else {
+		guard let url = Bundle.main.url(forResource: "20240824.0001", withExtension: "json") else {
 			throw NetworkingError.resourceNotFound
 		}
 
