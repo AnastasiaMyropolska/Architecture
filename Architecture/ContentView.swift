@@ -10,7 +10,9 @@ import MapKit
 
 struct ContentView: View {
 
-	private var locationManager = LocationManager()
+	var viewModel = ContentViewModel()
+
+	//private var locationManager = LocationManager()
 	@State private var cameraPosition: MapCameraPosition = .userLocation(fallback: .automatic)
 	@State private var visibleRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.1967608, longitude: 11.4132661), span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5)) // has to be @State, otherwise not possible to change in onMapCameraChange // TODO: wft is this, why hardcoded? we should use user's location
 	// position.followsUserLocation = true
@@ -30,29 +32,13 @@ struct ContentView: View {
 		}
 		.task {
 			// guard markers.isEmpty else { return }
-
-			do {
-				let request = Request(region: visibleRegion)
-
-				markers = try await Parser(request: request).parse().map {
-					$0.convertToMapItem()
-				}
-			} catch {
-
-			}
+			markers = await viewModel.requestArtifacts()
 		}
 		.onMapCameraChange { context in
-			visibleRegion = context.region
+			viewModel.visibleRegion = context.region // called many times, why?
 
 			Task {
-				do {
-					let request = Request(region: visibleRegion)
-					markers = try await Parser(request: request).parse().map {
-						$0.convertToMapItem()
-					}
-				} catch {
-
-				}
+				markers = await viewModel.requestArtifacts()
 			}
 		}
 //		.onChange(of: selectedResult) {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22198ED32CCD050700B6D54E /* Artefact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22198ED22CCD050700B6D54E /* Artefact.swift */; };
+		2246B7BC2DAC12BD0019C07B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */; };
 		2289EE7F2CE126E900EE0B78 /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289EE7E2CE126DE00EE0B78 /* ItemInfoView.swift */; };
 		22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACC1D42C568BBE001A3D0F /* LocationManager.swift */; };
 		22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		22198ED22CCD050700B6D54E /* Artefact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artefact.swift; sourceTree = "<group>"; };
+		2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		2289EE7E2CE126DE00EE0B78 /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
 		22980D162C5E7C770021CF8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22ACC1D42C568BBE001A3D0F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				22B6569D2C1D93E200EEE26F /* ContentView.swift */,
 				2289EE7E2CE126DE00EE0B78 /* ItemInfoView.swift */,
 				22ACC1D42C568BBE001A3D0F /* LocationManager.swift */,
+				2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */,
 				22E843572C7BAD0B0037F215 /* Ressources */,
 				22B656A22C1D93E400EEE26F /* Preview Content */,
 			);
@@ -294,6 +297,7 @@
 				22198ED32CCD050700B6D54E /* Artefact.swift in Sources */,
 				22E843562C7BA86A0037F215 /* Parser.swift in Sources */,
 				22B6569E2C1D93E200EEE26F /* ContentView.swift in Sources */,
+				2246B7BC2DAC12BD0019C07B /* ContentViewModel.swift in Sources */,
 				22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */,
 				22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */,
 				2289EE7F2CE126E900EE0B78 /* ItemInfoView.swift in Sources */,
