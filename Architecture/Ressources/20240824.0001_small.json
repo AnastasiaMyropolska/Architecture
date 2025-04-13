@@ -1,0 +1,18 @@
+{"artefacts":
+[
+{
+"artefacts_name":"Basilique Saint-Marcellin-et-Saint-Pierre de Seligenstadt",
+"web_reference_wiki":"https://fr.wikipedia.org/wiki/Basilique_Saint-Marcellin-et-Saint-Pierre_de_Seligenstadt",
+"page_language":"fr",
+"authors":[],
+"events":[{"event":"Creation start","event_begin":"834","event_end":"","id":346269}],
+"synonyms":[{"lang":"de","lang_name":"St. Marcellinus und Petrus (Seligenstadt)","web_reference_wiki":"https://de.wikipedia.org/wiki/St._Marcellinus_und_Petrus_(Seligenstadt)","id":882257}],
+"categories":[360,92],
+"artefactsLocation":{"longitude":8.97878111,"latitude":50.04293306,"id":74108},
+"artefactsImage":{"path_to_image":"https://upload.wikimedia.org/wikipedia/commons/9/95/Seligenstadt_2002_-Kloster_Seligenstadt-_Basilika_St._Marcellinus_und_Petrus_by-RaBoe_06.jpg","id":22990},
+"id":70088
+},
+{
+"artefacts_name":"Pfalz Seligenstadt","web_reference_wiki":"https://de.wikipedia.org/wiki/Pfalz_Seligenstadt","page_language":"de","authors":[],"events":[],"synonyms":[],"categories":[282],"artefactsLocation":{"longitude":8.977118,"latitude":50.044842,"id":314729},"artefactsImage":{"path_to_image":"https://upload.wikimedia.org/wikipedia/commons/b/b2/Seligenstadt_Pfalz_2014_01.jpg","id":113055},"id":167039}
+
+],"region":"Bavaria","thema":"Architecture","version":"2.0.0","stringLocalDate":"2024-08-24T09:54:14.964560300","error":""}
