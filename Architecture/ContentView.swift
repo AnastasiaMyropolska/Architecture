@@ -26,10 +26,6 @@ struct ContentView: View {
 
 			UserAnnotation() // user's location
 		}
-		.task {
-			// guard markers.isEmpty else { return }
-			await viewModel.requestArtifacts()
-		}
 		.onMapCameraChange(frequency: .onEnd) { context in
 			viewModel.visibleRegion = context.region
 
