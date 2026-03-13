@@ -27,15 +27,8 @@ struct ContentView: View {
 			UserAnnotation() // user's location
 		}
 		.onMapCameraChange(frequency: .onEnd) { context in
-			viewModel.visibleRegion = context.region
-
-			Task {
-				await viewModel.requestArtifacts()
-			}
+			viewModel.requestArtifacts(for: context.region)
 		}
-//		.onChange(of: selectedResult) {
-//			getDirection()
-//		}
 		.safeAreaInset(edge: .bottom) {
 			if let selectedMarker = viewModel.selectedMarker {
 				ItemInfoView(selectedMarker: selectedMarker, route: route)

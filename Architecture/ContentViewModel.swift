@@ -8,21 +8,28 @@
 import MapKit
 import SwiftUI
 
+@MainActor
 @Observable class ContentViewModel {
-	private var locationManager = LocationManager()
-	var visibleRegion: MKCoordinateRegion?
+
+	@ObservationIgnored
+	private var requestTask: Task<Void, Never>?
+
 	var visibleMarkers: [MKMapItem] = []//[ArtefactMapItem] = []
 	var selectedMarker: MKMapItem?//ArtefactMapItem?
 
-	func requestArtifacts() async {
-		guard let visibleRegion else { return }
-		
-		let request = Request(region: visibleRegion)
-		do {
-			let artefacts = try await Parser(request: request).parse()
-			visibleMarkers = artefacts.map {$0.convertToMapItem() }
-		} catch {
-			visibleMarkers = []
+	func requestArtifacts(for region: MKCoordinateRegion) {
+		requestTask?.cancel()
+		requestTask = Task { [weak self] in
+			let request = Request(region: region)
+			do {
+				// background work
+				let artefacts = try await Parser(request: request).parse()
+				let markers = artefacts.map { $0.convertToMapItem() }
+
+				self?.visibleMarkers = markers
+			} catch {
+				self?.visibleMarkers = []
+			}
 		}
 	}
 }
