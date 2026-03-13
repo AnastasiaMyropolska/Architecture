@@ -7,7 +7,7 @@
 
 import MapKit
 
-// variables are named the same as in json structure
+// properties are named the same as in json structure
 struct Artefact: Decodable {
 
 	struct ArtefactsLocation: Decodable {

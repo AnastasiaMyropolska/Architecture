@@ -6,7 +6,7 @@
 //
 
 import MapKit
-import SwiftUICore
+import SwiftUI
 
 @Observable class ContentViewModel {
 	private var locationManager = LocationManager()

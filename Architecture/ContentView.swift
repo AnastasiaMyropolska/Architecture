@@ -10,7 +10,7 @@ import MapKit
 
 struct ContentView: View {
 
-	var viewModel = ContentViewModel()
+	@State private var viewModel = ContentViewModel()
 
 	@State private var cameraPosition: MapCameraPosition = .userLocation(fallback: .automatic)
 
@@ -30,8 +30,8 @@ struct ContentView: View {
 			// guard markers.isEmpty else { return }
 			await viewModel.requestArtifacts()
 		}
-		.onMapCameraChange { context in
-			viewModel.visibleRegion = context.region // called many times, why? is this why it's slow?
+		.onMapCameraChange(frequency: .onEnd) { context in
+			viewModel.visibleRegion = context.region
 
 			Task {
 				await viewModel.requestArtifacts()

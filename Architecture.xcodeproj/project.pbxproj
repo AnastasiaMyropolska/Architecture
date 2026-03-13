@@ -107,12 +107,12 @@
 		22B6569A2C1D93E200EEE26F /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				22E843542C7BA84B0037F215 /* Engine */,
 				22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */,
+				22E843542C7BA84B0037F215 /* Engine */,
 				22B6569D2C1D93E200EEE26F /* ContentView.swift */,
+				2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */,
 				2289EE7E2CE126DE00EE0B78 /* ItemInfoView.swift */,
 				22ACC1D42C568BBE001A3D0F /* LocationManager.swift */,
-				2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */,
 				22E843572C7BAD0B0037F215 /* Ressources */,
 				22B656A22C1D93E400EEE26F /* Preview Content */,
 			);
