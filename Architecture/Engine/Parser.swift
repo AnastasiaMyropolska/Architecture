@@ -43,16 +43,54 @@ struct Parser {
 		let visibleArtefacts = artefacts.filter{ request.region.contains( $0.artefactsLocation.location) }
 
 		return Array(visibleArtefacts/*.prefix(5)*/)
+	}
 
-		// todo: try to use async sequence
-//		let result: (bytes: URLSession.AsyncBytes, response: URLResponse) = try await URLSession.shared.bytes(from: url, delegate: nil)
-//		for try await line in result.bytes.lines {
-//		  let artefacts = try JSONDecoder().decode(ResponseData.self, from: Data(line.utf8))
-//		  await updateFavoriteCount(with: photoMetadata) // 👈🏻 need to execute in the main actor
-//		}
-// don't know if this will work and how to handle async array in ContentView. This should return not array of bytes, but array of artifacts
+	struct ArtefactRequest: Codable {
+		let token: String
+		let thema: String
+		let longitude: Double
+		let latitude: Double
+		let version: String
+		let lookAroundVersion: String
+		let precision: Double
+	}
 
+	func parseRemote() async throws -> [Artefact] {
+		guard let url = URL(string: "http://94.130.181.51:8080/ArtefactsLocation-api/supplyArtefacts") else {
+			throw NetworkingError.resourceNotFound
+		}
 
+		let requestBody = ArtefactRequest(
+			token: "pk.eyJ1IjoibXlyb3BvbHNreWkiLCJhIjoiY2t1dHVibDZvMmZlNDJwcDFwMTI3ZjU0dyJ9.J_kmeuSJGKwoKiqQXVfFAQ",
+			thema: "Architecture",
+			longitude: request.region.center.longitude,
+			latitude: request.region.center.latitude,
+			version: "2.0.3",
+			lookAroundVersion: "3.0.0",
+			precision: 0.05
+		)
+
+		let jsonData = try JSONEncoder().encode(requestBody)
+
+		guard let url1 = Bundle.main.url(forResource: "request", withExtension: "json") else {
+			throw NetworkingError.resourceNotFound
+		}
+		let (data1, responce1) = try await URLSession.shared.data(from: url1)
+
+		// 3. Create URLRequest
+		var request = URLRequest(url: url)
+		request.httpMethod = "POST"
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.httpBody = data1
+
+		let (data, response) = try await URLSession.shared.data(for: request)
+
+		// Optional: check HTTP status code
+		if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
+			throw URLError(.badServerResponse)
+		}
+
+		return []
 	}
 }
 

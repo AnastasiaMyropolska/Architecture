@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		22198ED32CCD050700B6D54E /* Artefact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22198ED22CCD050700B6D54E /* Artefact.swift */; };
 		2246B7BC2DAC12BD0019C07B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */; };
+		227C50BA2F65B92300103DF0 /* request.json in Resources */ = {isa = PBXBuildFile; fileRef = 227C50B92F65B92300103DF0 /* request.json */; };
 		2289EE7F2CE126E900EE0B78 /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289EE7E2CE126DE00EE0B78 /* ItemInfoView.swift */; };
 		22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACC1D42C568BBE001A3D0F /* LocationManager.swift */; };
 		22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		22198ED22CCD050700B6D54E /* Artefact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artefact.swift; sourceTree = "<group>"; };
 		2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		227C50B92F65B92300103DF0 /* request.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = request.json; sourceTree = "<group>"; };
 		2289EE7E2CE126DE00EE0B78 /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
 		22980D162C5E7C770021CF8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22ACC1D42C568BBE001A3D0F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				22B6569F2C1D93E400EEE26F /* Assets.xcassets */,
 				22980D162C5E7C770021CF8B /* Info.plist */,
 				22E843582C7BAD510037F215 /* 20240824.0001.json */,
+				227C50B92F65B92300103DF0 /* request.json */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E843592C7BAD510037F215 /* 20240824.0001.json in Resources */,
+				227C50BA2F65B92300103DF0 /* request.json in Resources */,
 				22B656A42C1D93E400EEE26F /* Preview Assets.xcassets in Resources */,
 				22B656A02C1D93E400EEE26F /* Assets.xcassets in Resources */,
 			);

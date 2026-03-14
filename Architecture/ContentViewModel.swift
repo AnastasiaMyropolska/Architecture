@@ -20,6 +20,7 @@ import MapKit
 
 		requestTask?.cancel()
 
+		// create cancellable task
 		requestTask = Task { [weak self] in
 			do {
 				// debounce: do not execute each incoming task, execute at most one task in 400 milliseconds
@@ -30,15 +31,18 @@ import MapKit
 
 				let request = Request(region: region)
 
-				let artefacts = try await Parser(request: request).parse()
+				// parse in background, don't block main thread
+				let artefacts = try await Parser(request: request).parseRemote()
+
 				let markers = artefacts.map { $0.convertToMapItem() }
 
 				self?.visibleMarkers = markers
 
 			} catch is CancellationError {
-				// expected - ignore
+				// Task was cancelled - nothing to do
 				return
 			} catch {
+				// Parsing failed - need to handle
 				return
 			}
 		}
