@@ -6,7 +6,6 @@
 //
 
 import MapKit
-import SwiftUI
 
 @MainActor
 @Observable class ContentViewModel {
@@ -18,17 +17,29 @@ import SwiftUI
 	var selectedMarker: MKMapItem?//ArtefactMapItem?
 
 	func requestArtifacts(for region: MKCoordinateRegion) {
+
 		requestTask?.cancel()
+
 		requestTask = Task { [weak self] in
-			let request = Request(region: region)
 			do {
-				// background work
+				// debounce: do not execute each incoming task, execute at most one task in 400 milliseconds
+				// Task.sleep() suspends an async task without making any thread unavailable
+				try await Task.sleep(for: .milliseconds(400))
+
+				try Task.checkCancellation()
+
+				let request = Request(region: region)
+
 				let artefacts = try await Parser(request: request).parse()
 				let markers = artefacts.map { $0.convertToMapItem() }
 
 				self?.visibleMarkers = markers
+
+			} catch is CancellationError {
+				// expected - ignore
+				return
 			} catch {
-				self?.visibleMarkers = []
+				return
 			}
 		}
 	}
