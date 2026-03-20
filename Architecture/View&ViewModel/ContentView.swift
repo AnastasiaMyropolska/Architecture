@@ -19,6 +19,7 @@ struct ContentView: View {
 	@State private var showSheet = false
 	
 	@State private var dragOffset: CGFloat = 0
+	@State private var sheetOffset: CGFloat = 0
 
 	var body: some View {
 		GeometryReader { geometry in
@@ -32,7 +33,7 @@ struct ContentView: View {
 			.onMapCameraChange(frequency: .onEnd) { context in
 				viewModel.requestArtifacts(for: context.region)
 			}
-			.onChange(of: viewModel.selectedMarker) { oldValue, newValue in
+			.onChange(of: viewModel.selectedMarker) { _, newValue in
 				showSheet = newValue != nil
 			}
 			.overlay(alignment: .bottom) {

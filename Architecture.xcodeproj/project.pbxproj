@@ -93,8 +93,8 @@
 			children = (
 				22B6569D2C1D93E200EEE26F /* ContentView.swift */,
 				2246B7BB2DAC12BD0019C07B /* ContentViewModel.swift */,
-				227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */,
 				227C50BD2F6D478600103DF0 /* MapOverlay.swift */,
+				227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */,
 			);
 			path = "View&ViewModel";
 			sourceTree = "<group>";

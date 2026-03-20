@@ -14,20 +14,9 @@ struct ArtefactInfoView: View {
 	
 	var body: some View {
 		VStack(alignment: .leading, spacing: 16) {
-			HStack {
-				Text(selectedItem.name ?? "Unknown Location")
-					.font(.headline)
-				
-				Spacer()
-				
-				Button {
-					// Close action will be handled in ContentView
-				} label: {
-					Image(systemName: "xmark.circle.fill")
-						.font(.title2)
-						.foregroundStyle(.secondary)
-				}
-			}
+			Text(selectedItem.name ?? "Unknown Location")
+				.font(.headline)
+			
 			
 			Spacer()
 		}
