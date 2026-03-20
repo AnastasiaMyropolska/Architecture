@@ -1,0 +1,75 @@
+//
+//  ContentView.swift
+//  Architecture
+//
+//  Created by Anastasia Myropolska on 15.06.24.
+//
+
+import SwiftUI
+import MapKit
+
+struct ContentView: View {
+
+	@State private var viewModel = ContentViewModel()
+
+	@State private var cameraPosition: MapCameraPosition = .userLocation(fallback: .automatic)
+
+	@State private var route: MKRoute?
+	
+	@State private var showSheet = false
+	
+	@State private var dragOffset: CGFloat = 0
+
+	var body: some View {
+		GeometryReader { geometry in
+			Map(position: $cameraPosition, selection: $viewModel.selectedMarker) {
+				ForEach (viewModel.visibleMarkers, id: \.self) { marker in
+					Marker(item: marker)
+				}
+
+				UserAnnotation() // user's location
+			}
+			.onMapCameraChange(frequency: .onEnd) { context in
+				viewModel.requestArtifacts(for: context.region)
+			}
+			.onChange(of: viewModel.selectedMarker) { oldValue, newValue in
+				showSheet = newValue != nil
+			}
+			.overlay(alignment: .bottom) {
+				if showSheet, let selectedItem = viewModel.selectedMarker {
+					MapOverlay(
+						selectedItem: selectedItem,
+						screenHeight: geometry.size.height,
+						showSheet: $showSheet,
+						dragOffset: $dragOffset,
+						onDismiss: {
+							viewModel.selectedMarker = nil
+						}
+					)
+				}
+			}
+			.animation(.spring, value: showSheet)
+			.mapControls {
+				MapUserLocationButton()
+				MapCompass()
+				MapScaleView()
+			}
+		}
+	}
+
+//	func getDirection() {
+//		route = nil
+//		guard let selectedResult else { return }
+//
+//		let request = MKDirections.Request()
+//		request.source = MKMapItem.forCurrentLocation()
+//		request.destination = selectedResult
+//
+//		Task {
+//			let directions = MKDirections(request: request)
+//			let responce = try? await directions.calculate()
+//			route = responce?.routes.first
+//		}
+//	}
+}
+

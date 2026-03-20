@@ -32,7 +32,7 @@ import MapKit
 				let request = Request(region: region)
 
 				// parse in background, don't block main thread
-				let artefacts = try await Parser(request: request).parseRemote()
+				let artefacts = try await Parser(request: request).parse()
 
 				let markers = artefacts.map { $0.convertToMapItem() }
 
