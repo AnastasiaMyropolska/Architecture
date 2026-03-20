@@ -2,7 +2,7 @@
 //  ContentViewModel.swift
 //  Architecture
 //
-//  Created by Anastasia Miropolskaja on 13.04.25.
+//  Created by Anastasia Myropolska on 13.04.25.
 //
 
 import MapKit

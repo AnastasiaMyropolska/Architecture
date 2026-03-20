@@ -13,8 +13,6 @@ struct ArtefactInfoView: View {
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 16) {
-
-
 			
 			Spacer()
 		}
@@ -25,7 +23,7 @@ struct ArtefactInfoView: View {
 
 struct ArtefactHeaderView: View {
 	let selectedItem: MKMapItem
-	let onDismiss: () -> Void
+	@Binding var shouldDismiss: Bool
 
 	var body: some View {
 		HStack {
@@ -37,9 +35,7 @@ struct ArtefactHeaderView: View {
 			Spacer()
 
 			Button {
-				withAnimation(.spring) {
-					onDismiss()
-				}
+				shouldDismiss = true
 			} label: {
 				Image(systemName: "xmark")
 					.font(.system(size: 14, weight: .semibold))

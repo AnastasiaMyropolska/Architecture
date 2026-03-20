@@ -14,9 +14,10 @@ struct MapOverlay: View {
 	let baseOffset: CGFloat = 20
 
 	let onDismiss: () -> Void
-	
 
 	@State private var dragOffset: CGFloat = 0
+
+	@State private var shouldDismiss = false
 
 	private var cornerRadius: CGFloat {
 		// Default fallback if safeAreaInsets are zero
@@ -32,7 +33,7 @@ struct MapOverlay: View {
 		VStack(spacing: 0) {
 			DragIndicator()
 
-			ArtefactHeaderView(selectedItem: selectedItem, onDismiss: onDismiss)
+			ArtefactHeaderView(selectedItem: selectedItem, shouldDismiss: $shouldDismiss)
 
 			ArtefactInfoView(selectedItem: selectedItem)
 		}
@@ -44,6 +45,14 @@ struct MapOverlay: View {
 		.padding(.horizontal)
 		.offset(y: dragOffset + baseOffset)
 		.transition(.move(edge: .bottom).combined(with: .opacity))
+		.onChange(of: shouldDismiss, { oldValue, newValue in
+			if shouldDismiss {
+				//onDismiss()
+				withAnimation(.spring) {
+					onDismiss()
+				}
+			}
+		})
 		.gesture(
 			DragGesture()
 				.onChanged { value in
@@ -55,9 +64,7 @@ struct MapOverlay: View {
 				.onEnded { value in
 					// Dismiss if dragged down more than 100 points
 					if value.translation.height > 100 {
-						withAnimation(.spring) {
-							onDismiss()
-						}
+						shouldDismiss = true
 					} else {
 						// Snap back if not dragged enough
 						withAnimation(.spring) {
