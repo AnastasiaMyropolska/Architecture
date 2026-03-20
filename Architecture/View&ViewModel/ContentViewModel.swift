@@ -8,7 +8,7 @@
 import MapKit
 
 @MainActor
-@Observable class ContentViewModel {
+@Observable final class ContentViewModel {
 
 	@ObservationIgnored
 	private var requestTask: Task<Void, Never>?
