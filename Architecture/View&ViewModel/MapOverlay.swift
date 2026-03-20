@@ -11,7 +11,6 @@ import MapKit
 struct MapOverlay: View {
 	let selectedItem: MKMapItem
 	let screenHeight: CGFloat
-	@Binding var showSheet: Bool
 	@Binding var dragOffset: CGFloat
 	let baseOffset: CGFloat = 20
 
@@ -39,7 +38,6 @@ struct MapOverlay: View {
 				
 				Button {
 					withAnimation(.spring) {
-						showSheet = false
 						dragOffset = 0
 						onDismiss()
 					}
@@ -76,7 +74,6 @@ struct MapOverlay: View {
 					// Dismiss if dragged down more than 100 points
 					if value.translation.height > 100 {
 						withAnimation(.spring) {
-							showSheet = false
 							dragOffset = 0
 							onDismiss()
 						}

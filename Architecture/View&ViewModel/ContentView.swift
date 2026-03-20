@@ -14,10 +14,8 @@ struct ContentView: View {
 
 	@State private var cameraPosition: MapCameraPosition = .userLocation(fallback: .automatic)
 
-	@State private var route: MKRoute?
-	
 	@State private var showSheet = false
-	
+
 	@State private var dragOffset: CGFloat = 0
 	@State private var sheetOffset: CGFloat = 0
 
@@ -41,7 +39,6 @@ struct ContentView: View {
 					MapOverlay(
 						selectedItem: selectedItem,
 						screenHeight: geometry.size.height,
-						showSheet: $showSheet,
 						dragOffset: $dragOffset,
 						onDismiss: {
 							viewModel.selectedMarker = nil
@@ -57,20 +54,5 @@ struct ContentView: View {
 			}
 		}
 	}
-
-//	func getDirection() {
-//		route = nil
-//		guard let selectedResult else { return }
-//
-//		let request = MKDirections.Request()
-//		request.source = MKMapItem.forCurrentLocation()
-//		request.destination = selectedResult
-//
-//		Task {
-//			let directions = MKDirections(request: request)
-//			let responce = try? await directions.calculate()
-//			route = responce?.routes.first
-//		}
-//	}
 }
 
