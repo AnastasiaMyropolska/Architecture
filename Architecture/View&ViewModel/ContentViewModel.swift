@@ -29,10 +29,9 @@ import MapKit
 
 				try Task.checkCancellation()
 
-				let request = Request(region: region)
-
 				// parse in background, don't block main thread
-				let artefacts = try await Parser(request: request).parseRemote()
+				let data = try await Fetcher.fetchRemote(region: region)
+				let artefacts = try await Decoder.decode(data: data)
 
 				let markers = artefacts.map { $0.mapItem() }
 

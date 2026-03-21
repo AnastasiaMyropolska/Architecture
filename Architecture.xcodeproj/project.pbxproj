@@ -12,6 +12,8 @@
 		227C50BC2F6D3E5400103DF0 /* ArtefactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */; };
 		227C50BE2F6D478600103DF0 /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BD2F6D478600103DF0 /* MapOverlay.swift */; };
 		227C50C32F6EC4B300103DF0 /* ArtefactMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C22F6EC4B300103DF0 /* ArtefactMapItem.swift */; };
+		227C50C52F6EF2E900103DF0 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C42F6EF2E900103DF0 /* Fetcher.swift */; };
+		227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */; };
 		22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACC1D42C568BBE001A3D0F /* LocationManager.swift */; };
 		22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */; };
 		22B6569E2C1D93E200EEE26F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569D2C1D93E200EEE26F /* ContentView.swift */; };
@@ -47,6 +49,8 @@
 		227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtefactInfoView.swift; sourceTree = "<group>"; };
 		227C50BD2F6D478600103DF0 /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		227C50C22F6EC4B300103DF0 /* ArtefactMapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtefactMapItem.swift; sourceTree = "<group>"; };
+		227C50C42F6EF2E900103DF0 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
+		227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Contains.swift"; sourceTree = "<group>"; };
 		22980D162C5E7C770021CF8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22ACC1D42C568BBE001A3D0F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		22B656982C1D93E200EEE26F /* Architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Architecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,9 +164,11 @@
 			isa = PBXGroup;
 			children = (
 				22E843552C7BA86A0037F215 /* Parser.swift */,
+				227C50C42F6EF2E900103DF0 /* Fetcher.swift */,
 				22198ED22CCD050700B6D54E /* Artefact.swift */,
 				227C50C22F6EC4B300103DF0 /* ArtefactMapItem.swift */,
 				22ACC1D42C568BBE001A3D0F /* LocationManager.swift */,
+				227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,6 +317,8 @@
 				227C50C32F6EC4B300103DF0 /* ArtefactMapItem.swift in Sources */,
 				22198ED32CCD050700B6D54E /* Artefact.swift in Sources */,
 				22E843562C7BA86A0037F215 /* Parser.swift in Sources */,
+				227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */,
+				227C50C52F6EF2E900103DF0 /* Fetcher.swift in Sources */,
 				227C50BC2F6D3E5400103DF0 /* ArtefactInfoView.swift in Sources */,
 				22B6569E2C1D93E200EEE26F /* ContentView.swift in Sources */,
 				2246B7BC2DAC12BD0019C07B /* ContentViewModel.swift in Sources */,
