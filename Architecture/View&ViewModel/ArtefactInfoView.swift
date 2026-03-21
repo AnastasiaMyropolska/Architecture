@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct ArtefactInfoView: View {
-	let selectedItem: MKMapItem
+	let selectedItem: ArtefactMapItem
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 16) {
@@ -22,14 +22,14 @@ struct ArtefactInfoView: View {
 }
 
 struct ArtefactHeaderView: View {
-	let selectedItem: MKMapItem
+	let selectedItem: ArtefactMapItem
 	@Binding var shouldDismiss: Bool
 
 	var body: some View {
 		HStack {
 			Spacer()
 
-			Text(selectedItem.name ?? "Unknown Location")
+			Text(selectedItem.mapItem.name ?? "Unknown Location")
 				.font(.headline)
 
 			Spacer()

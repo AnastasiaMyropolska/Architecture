@@ -23,9 +23,20 @@ struct Artefact: Decodable {
 	let artefacts_name: String
 	let artefactsLocation: ArtefactsLocation
 
-	func convertToMapItem() -> MKMapItem {
+	func mapItem() -> ArtefactMapItem {
 		let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.artefactsLocation.location))
 		mapItem.name = self.artefacts_name
-		return mapItem
+		mapItem.url = self.web_reference_wiki
+		let artefactMapItem = ArtefactMapItem(mapItem: mapItem, imageURL: self.artefactsImage?.path_to_image)
+		return artefactMapItem
 	}
+
+	struct ArtefactImage: Decodable {
+		let path_to_image: URL
+		let id: UInt64
+	}
+
+	let artefactsImage: ArtefactImage? // can be missing
+
+	let web_reference_wiki: URL
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct MapOverlay: View {
-	let selectedItem: MKMapItem
+	let selectedItem: ArtefactMapItem
 
 	let baseOffset: CGFloat = 20
 

@@ -13,8 +13,8 @@ import MapKit
 	@ObservationIgnored
 	private var requestTask: Task<Void, Never>?
 
-	var visibleMarkers: [MKMapItem] = []//[ArtefactMapItem] = []
-	var selectedMarker: MKMapItem?//ArtefactMapItem?
+	var visibleMarkers: [ArtefactMapItem] = []
+	var selectedMarker: ArtefactMapItem?
 
 	func requestArtifacts(for region: MKCoordinateRegion) {
 
@@ -34,7 +34,7 @@ import MapKit
 				// parse in background, don't block main thread
 				let artefacts = try await Parser(request: request).parse()
 
-				let markers = artefacts.map { $0.convertToMapItem() }
+				let markers = artefacts.map { $0.mapItem() }
 
 				self?.visibleMarkers = markers
 

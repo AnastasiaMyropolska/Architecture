@@ -37,12 +37,22 @@ struct Parser {
 //			throw NetworkingError.serverError
 //		}
 
-		let artefacts = try JSONDecoder().decode(ResponseData.self, from: data).artefacts
+		do {
+			let decodedResponse = try JSONDecoder().decode(ResponseData.self, from: data)
+			let artefacts = decodedResponse.artefacts
+			let visibleArtefacts = artefacts.filter{ request.region.contains( $0.artefactsLocation.location) }
+			return Array(visibleArtefacts/*.prefix(5)*/)
+		} catch let DecodingError.keyNotFound(key, context) {
+			print("Missing key: \(key), \(context)")
+		}
+		catch let DecodingError.typeMismatch(type, context) {
+			print("Type mismatch: \(type), \(context)")
+		}
+		catch {
+			print(error)
+		}
 
-		// for now filter out here; once requested from server using region, it will be filtered on a server
-		let visibleArtefacts = artefacts.filter{ request.region.contains( $0.artefactsLocation.location) }
-
-		return Array(visibleArtefacts/*.prefix(5)*/)
+		return []
 	}
 
 	struct ArtefactRequest: Codable {

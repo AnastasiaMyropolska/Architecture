@@ -18,8 +18,8 @@ struct ContentView: View {
 
 	var body: some View {
 		Map(position: $cameraPosition, selection: $viewModel.selectedMarker) {
-			ForEach (viewModel.visibleMarkers, id: \.self) { marker in
-				Marker(item: marker)
+			ForEach(viewModel.visibleMarkers, id: \.self) { item in
+				Marker( item: item.mapItem)
 			}
 
 			UserAnnotation() // user's location
