@@ -19,16 +19,6 @@ struct MapOverlay: View {
 
 	@State private var shouldDismiss = false
 
-	private var cornerRadius: CGFloat {
-		// Default fallback if safeAreaInsets are zero
-		let keyWindow = UIApplication.shared.connectedScenes
-			.compactMap { $0 as? UIWindowScene }
-			.first?.windows.first { $0.isKeyWindow }
-
-		let bottomInset = keyWindow?.safeAreaInsets.bottom ?? 34
-		return max(bottomInset, 38) // Ensure minimum radius for smooth look
-	}
-
 	var body: some View {
 		VStack(spacing: 0) {
 			DragIndicator()
@@ -40,14 +30,13 @@ struct MapOverlay: View {
 		.frame(height: 400)
 		.frame(maxWidth: .infinity)
 		.background(.ultraThinMaterial)
-		.clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+		.cornerRadius(UIUtilities.adaptiveCornerRadius())
 		.shadow(radius: 10)
 		.padding(.horizontal)
 		.offset(y: dragOffset + baseOffset)
 		.transition(.move(edge: .bottom).combined(with: .opacity))
 		.onChange(of: shouldDismiss, { oldValue, newValue in
 			if shouldDismiss {
-				//onDismiss()
 				withAnimation(.spring) {
 					onDismiss()
 				}

@@ -2,48 +2,24 @@
 //  ContentView.swift
 //  Architecture
 //
-//  Created by Anastasia Myropolska on 15.06.24.
+//  Created by Anastasia Myropolska on 28.03.26.
 //
 
 import SwiftUI
-import MapKit
 
 struct ContentView: View {
-
 	@State private var viewModel = ContentViewModel()
 
-	@State private var cameraPosition: MapCameraPosition = .userLocation(fallback: .automatic)
-	
-	@State private var showSheet = false
-
 	var body: some View {
-		Map(position: $cameraPosition, selection: $viewModel.selectedMarker) {
-			ForEach(viewModel.visibleMarkers, id: \.self) { item in
-				Marker( item: item.mapItem)
-			}
+		ZStack {
+			MapView()
 
-			UserAnnotation() // user's location
-		}
-		.onMapCameraChange(frequency: .onEnd) { context in
-			viewModel.requestArtifacts(for: context.region)
-		}
-		.onChange(of: viewModel.selectedMarker) { _, newValue in
-			showSheet = newValue != nil
-		}
-		.overlay(alignment: .bottom) {
-			if showSheet, let selectedItem = viewModel.selectedMarker {
-				MapOverlay(selectedItem: selectedItem,
-							  onDismiss: {
-								viewModel.selectedMarker = nil
-							  }
-				)
+			if !viewModel.isLocationServicesEnabled {
+				VStack {
+					LocationDisabledBanner()
+				}
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 			}
-		}
-//		.animation(.spring, value: showSheet)
-		.mapControls {
-			MapUserLocationButton()
-			//MapCompass()
-			//MapScaleView()
 		}
 	}
 }
