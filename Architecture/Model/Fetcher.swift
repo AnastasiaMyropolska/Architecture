@@ -10,7 +10,7 @@ import MapKit
 
 struct Fetcher {
 
-	static func fetch(region: MKCoordinateRegion) async throws -> Data {
+	static func fetchLocal(region: MKCoordinateRegion) async throws -> Data {
 		guard let url = Bundle.main.url(forResource: "20240824.0001", withExtension: "json") else {
 			throw NetworkingError.resourceNotFound
 		}

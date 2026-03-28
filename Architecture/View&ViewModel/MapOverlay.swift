@@ -30,7 +30,7 @@ struct MapOverlay: View {
 		.frame(height: 400)
 		.frame(maxWidth: .infinity)
 		.background(.ultraThinMaterial)
-		.cornerRadius(UIUtilities.adaptiveCornerRadius())
+		.deviceCornerRadius()
 		.shadow(radius: 10)
 		.padding(.horizontal)
 		.offset(y: dragOffset + baseOffset)

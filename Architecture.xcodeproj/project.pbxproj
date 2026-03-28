@@ -18,7 +18,7 @@
 		22B47CDB2F77FF5B00AFC3F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */; };
 		22B47CDD2F78002B00AFC3F4 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */; };
 		22B47CDF2F78033A00AFC3F4 /* LocationDisabledBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */; };
-		22B47CE12F7804C700AFC3F4 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CE02F7804C700AFC3F4 /* UIUtilities.swift */; };
+		22B47CE12F7804C700AFC3F4 /* DeviceCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */; };
 		22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */; };
 		22B6569E2C1D93E200EEE26F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569D2C1D93E200EEE26F /* MapView.swift */; };
 		22B656A02C1D93E400EEE26F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22B6569F2C1D93E400EEE26F /* Assets.xcassets */; };
@@ -26,7 +26,7 @@
 		22B656AE2C1D93E400EEE26F /* ArchitectureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B656AD2C1D93E400EEE26F /* ArchitectureTests.swift */; };
 		22B656B82C1D93E400EEE26F /* ArchitectureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B656B72C1D93E400EEE26F /* ArchitectureUITests.swift */; };
 		22B656BA2C1D93E400EEE26F /* ArchitectureUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B656B92C1D93E400EEE26F /* ArchitectureUITestsLaunchTests.swift */; };
-		22E843562C7BA86A0037F215 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E843552C7BA86A0037F215 /* Parser.swift */; };
+		22E843562C7BA86A0037F215 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E843552C7BA86A0037F215 /* Decoder.swift */; };
 		22E843592C7BAD510037F215 /* 20240824.0001.json in Resources */ = {isa = PBXBuildFile; fileRef = 22E843582C7BAD510037F215 /* 20240824.0001.json */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +60,7 @@
 		22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDisabledBanner.swift; sourceTree = "<group>"; };
-		22B47CE02F7804C700AFC3F4 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
+		22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCornerRadius.swift; sourceTree = "<group>"; };
 		22B656982C1D93E200EEE26F /* Architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Architecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitectureApp.swift; sourceTree = "<group>"; };
 		22B6569D2C1D93E200EEE26F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		22B656B32C1D93E400EEE26F /* ArchitectureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArchitectureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B656B72C1D93E400EEE26F /* ArchitectureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitectureUITests.swift; sourceTree = "<group>"; };
 		22B656B92C1D93E400EEE26F /* ArchitectureUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitectureUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		22E843552C7BA86A0037F215 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		22E843552C7BA86A0037F215 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		22E843582C7BAD510037F215 /* 20240824.0001.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 20240824.0001.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +110,7 @@
 				227C50BD2F6D478600103DF0 /* MapOverlay.swift */,
 				227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */,
 				22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */,
-				22B47CE02F7804C700AFC3F4 /* UIUtilities.swift */,
+				22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */,
 			);
 			path = "View&ViewModel";
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 		22E843542C7BA84B0037F215 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				22E843552C7BA86A0037F215 /* Parser.swift */,
+				22E843552C7BA86A0037F215 /* Decoder.swift */,
 				227C50C42F6EF2E900103DF0 /* Fetcher.swift */,
 				22198ED22CCD050700B6D54E /* Artefact.swift */,
 				227C50C22F6EC4B300103DF0 /* ArtefactMapItem.swift */,
@@ -330,9 +330,9 @@
 				227C50C32F6EC4B300103DF0 /* ArtefactMapItem.swift in Sources */,
 				22B47CDD2F78002B00AFC3F4 /* ContentViewModel.swift in Sources */,
 				22198ED32CCD050700B6D54E /* Artefact.swift in Sources */,
-				22B47CE12F7804C700AFC3F4 /* UIUtilities.swift in Sources */,
+				22B47CE12F7804C700AFC3F4 /* DeviceCornerRadius.swift in Sources */,
 				22B47CDB2F77FF5B00AFC3F4 /* ContentView.swift in Sources */,
-				22E843562C7BA86A0037F215 /* Parser.swift in Sources */,
+				22E843562C7BA86A0037F215 /* Decoder.swift in Sources */,
 				227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */,
 				227C50C52F6EF2E900103DF0 /* Fetcher.swift in Sources */,
 				227C50BC2F6D3E5400103DF0 /* ArtefactInfoView.swift in Sources */,
