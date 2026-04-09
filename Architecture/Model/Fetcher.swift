@@ -47,7 +47,7 @@ struct Fetcher {
 			latitude: region.center.latitude,
 			precision: max(region.span.latitudeDelta, region.span.longitudeDelta),
 			lookAroundVersion: "1.0.0",
-			calltype: "web"
+			calltype: "iOS"
 		)
 
 		let requestBodyJson = try JSONEncoder().encode(requestBody)

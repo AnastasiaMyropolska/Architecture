@@ -5,6 +5,7 @@
 //  Created by Anastasia Myropolska on 13.04.25.
 //
 
+import Observation
 import MapKit
 
 @MainActor
@@ -13,8 +14,8 @@ import MapKit
 	@ObservationIgnored
 	private var requestTask: Task<Void, Never>?
 
-	var visibleMarkers: [ArtefactMapItem] = []
-	var selectedMarker: ArtefactMapItem?
+	var visibleMarkers: [PointOfInterest] = []
+	var selectedMarker: PointOfInterest?
 
 	func requestArtifacts(for region: MKCoordinateRegion) {
 
@@ -33,7 +34,7 @@ import MapKit
 				let data = try await Fetcher.fetchRemote(region: region)
 				let artefacts = try await Decoder.decode(data: data)
 
-				let markers = artefacts.map { $0.mapItem() }
+				let markers = artefacts.map { $0.pointOfInterest() }
 
 				self?.visibleMarkers = markers
 

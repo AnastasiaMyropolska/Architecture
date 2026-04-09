@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		22198ED32CCD050700B6D54E /* Artefact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22198ED22CCD050700B6D54E /* Artefact.swift */; };
 		2246B7BC2DAC12BD0019C07B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */; };
-		227C50BC2F6D3E5400103DF0 /* ArtefactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */; };
+		227C50BC2F6D3E5400103DF0 /* POIInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BB2F6D3E5400103DF0 /* POIInfoView.swift */; };
 		227C50BE2F6D478600103DF0 /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BD2F6D478600103DF0 /* MapOverlay.swift */; };
-		227C50C32F6EC4B300103DF0 /* ArtefactMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C22F6EC4B300103DF0 /* ArtefactMapItem.swift */; };
+		227C50C32F6EC4B300103DF0 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C22F6EC4B300103DF0 /* PointOfInterest.swift */; };
 		227C50C52F6EF2E900103DF0 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C42F6EF2E900103DF0 /* Fetcher.swift */; };
 		227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */; };
 		22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACC1D42C568BBE001A3D0F /* LocationManager.swift */; };
@@ -19,6 +19,8 @@
 		22B47CDD2F78002B00AFC3F4 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */; };
 		22B47CDF2F78033A00AFC3F4 /* LocationDisabledBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */; };
 		22B47CE12F7804C700AFC3F4 /* DeviceCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */; };
+		22B47CE32F880A6600AFC3F4 /* POIInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CE22F880A6600AFC3F4 /* POIInfoViewModel.swift */; };
+		22B47CE52F88152000AFC3F4 /* PointOfInterest+MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CE42F88152000AFC3F4 /* PointOfInterest+MapItem.swift */; };
 		22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */; };
 		22B6569E2C1D93E200EEE26F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6569D2C1D93E200EEE26F /* MapView.swift */; };
 		22B656A02C1D93E400EEE26F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22B6569F2C1D93E400EEE26F /* Assets.xcassets */; };
@@ -50,9 +52,9 @@
 /* Begin PBXFileReference section */
 		22198ED22CCD050700B6D54E /* Artefact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artefact.swift; sourceTree = "<group>"; };
 		2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtefactInfoView.swift; sourceTree = "<group>"; };
+		227C50BB2F6D3E5400103DF0 /* POIInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIInfoView.swift; sourceTree = "<group>"; };
 		227C50BD2F6D478600103DF0 /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
-		227C50C22F6EC4B300103DF0 /* ArtefactMapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtefactMapItem.swift; sourceTree = "<group>"; };
+		227C50C22F6EC4B300103DF0 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		227C50C42F6EF2E900103DF0 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Contains.swift"; sourceTree = "<group>"; };
 		22980D162C5E7C770021CF8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,6 +63,8 @@
 		22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDisabledBanner.swift; sourceTree = "<group>"; };
 		22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCornerRadius.swift; sourceTree = "<group>"; };
+		22B47CE22F880A6600AFC3F4 /* POIInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIInfoViewModel.swift; sourceTree = "<group>"; };
+		22B47CE42F88152000AFC3F4 /* PointOfInterest+MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointOfInterest+MapItem.swift"; sourceTree = "<group>"; };
 		22B656982C1D93E200EEE26F /* Architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Architecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B6569B2C1D93E200EEE26F /* ArchitectureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitectureApp.swift; sourceTree = "<group>"; };
 		22B6569D2C1D93E200EEE26F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -103,12 +107,15 @@
 		227C50BF2F6D49F300103DF0 /* View&ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				227C50C22F6EC4B300103DF0 /* PointOfInterest.swift */,
+				22B47CE42F88152000AFC3F4 /* PointOfInterest+MapItem.swift */,
 				22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */,
 				22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */,
 				22B6569D2C1D93E200EEE26F /* MapView.swift */,
 				2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */,
 				227C50BD2F6D478600103DF0 /* MapOverlay.swift */,
-				227C50BB2F6D3E5400103DF0 /* ArtefactInfoView.swift */,
+				22B47CE22F880A6600AFC3F4 /* POIInfoViewModel.swift */,
+				227C50BB2F6D3E5400103DF0 /* POIInfoView.swift */,
 				22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */,
 				22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */,
 			);
@@ -178,7 +185,6 @@
 				22E843552C7BA86A0037F215 /* Decoder.swift */,
 				227C50C42F6EF2E900103DF0 /* Fetcher.swift */,
 				22198ED22CCD050700B6D54E /* Artefact.swift */,
-				227C50C22F6EC4B300103DF0 /* ArtefactMapItem.swift */,
 				22ACC1D42C568BBE001A3D0F /* LocationManager.swift */,
 				227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */,
 			);
@@ -327,20 +333,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B47CDF2F78033A00AFC3F4 /* LocationDisabledBanner.swift in Sources */,
-				227C50C32F6EC4B300103DF0 /* ArtefactMapItem.swift in Sources */,
+				227C50C32F6EC4B300103DF0 /* PointOfInterest.swift in Sources */,
 				22B47CDD2F78002B00AFC3F4 /* ContentViewModel.swift in Sources */,
 				22198ED32CCD050700B6D54E /* Artefact.swift in Sources */,
 				22B47CE12F7804C700AFC3F4 /* DeviceCornerRadius.swift in Sources */,
 				22B47CDB2F77FF5B00AFC3F4 /* ContentView.swift in Sources */,
 				22E843562C7BA86A0037F215 /* Decoder.swift in Sources */,
 				227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */,
+				22B47CE32F880A6600AFC3F4 /* POIInfoViewModel.swift in Sources */,
 				227C50C52F6EF2E900103DF0 /* Fetcher.swift in Sources */,
-				227C50BC2F6D3E5400103DF0 /* ArtefactInfoView.swift in Sources */,
+				227C50BC2F6D3E5400103DF0 /* POIInfoView.swift in Sources */,
 				22B6569E2C1D93E200EEE26F /* MapView.swift in Sources */,
 				2246B7BC2DAC12BD0019C07B /* MapViewModel.swift in Sources */,
 				22B6569C2C1D93E200EEE26F /* ArchitectureApp.swift in Sources */,
 				22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */,
 				227C50BE2F6D478600103DF0 /* MapOverlay.swift in Sources */,
+				22B47CE52F88152000AFC3F4 /* PointOfInterest+MapItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

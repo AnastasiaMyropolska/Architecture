@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import MapKit
 
 struct MapOverlay: View {
-	let selectedItem: ArtefactMapItem
+	let selectedItem: PointOfInterest // move to view model, remove MapKit
 
 	let baseOffset: CGFloat = 20
 
@@ -23,9 +22,9 @@ struct MapOverlay: View {
 		VStack(spacing: 0) {
 			DragIndicator()
 
-			ArtefactHeaderView(selectedItem: selectedItem, shouldDismiss: $shouldDismiss)
+			POIHeaderView(viewModel:POIInfoViewModel(poi: selectedItem), shouldDismiss: $shouldDismiss)
 
-			ArtefactInfoView(selectedItem: selectedItem)
+			POIInfoView(viewModel:POIInfoViewModel(poi: selectedItem))
 		}
 		.frame(height: 400)
 		.frame(maxWidth: .infinity)

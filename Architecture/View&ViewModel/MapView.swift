@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import MapKit
+import MapKit // usually it's not a good idea to import a model framework into a view, but this view represenst a map, so exception is done here
 
 struct MapView: View {
 
@@ -22,7 +22,7 @@ struct MapView: View {
 	var body: some View {
 		Map(position: $cameraPosition, selection: $viewModel.selectedMarker) {
 			ForEach(viewModel.visibleMarkers, id: \.self) { item in
-				Marker( item: item.mapItem)
+				Marker( item: item.mapItem())
 			}
 
 			UserAnnotation() // user's location
@@ -35,7 +35,7 @@ struct MapView: View {
 			showSheet = newValue != nil
 			
 			if let selectedMarker = newValue, let context = mapContext {
-				adjustCameraIfNeeded(for: selectedMarker.mapItem, context: context)
+				adjustCameraIfNeeded(for: selectedMarker.mapItem(), context: context)
 			}
 		}
 		.overlay(alignment: .bottom) {
