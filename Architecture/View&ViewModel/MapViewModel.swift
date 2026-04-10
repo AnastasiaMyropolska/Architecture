@@ -14,8 +14,8 @@ import MapKit
 	@ObservationIgnored
 	private var requestTask: Task<Void, Never>?
 
-	var visibleMarkers: [PointOfInterest] = []
-	var selectedMarker: PointOfInterest?
+	var visiblePois: [PointOfInterest] = []
+	var selectedPoi: PointOfInterest?
 
 	func requestArtifacts(for region: MKCoordinateRegion) {
 
@@ -34,9 +34,9 @@ import MapKit
 				let data = try await Fetcher.fetchRemote(region: region)
 				let artefacts = try await Decoder.decode(data: data)
 
-				let markers = artefacts.map { $0.pointOfInterest() }
+				let pointsOfInterest = artefacts.map { $0.pointOfInterest() }
 
-				self?.visibleMarkers = markers
+				self?.visiblePois = pointsOfInterest
 
 			} catch is CancellationError {
 				// Task was cancelled - nothing to do
