@@ -21,12 +21,12 @@ struct MapView: View {
 
 	var body: some View {
 		Map(position: $cameraPosition, selection: $viewModel.selectedPoi) {
-			ForEach(viewModel.visiblePois) { item in
+			ForEach(viewModel.visiblePois) { poi in
 				Marker(
-					item.title ?? "asdf",
-					coordinate: item.location
+					poi.title,
+					coordinate: poi.location
 				)
-				.tag(item)
+				.tag(poi)
 			}
 
 			UserAnnotation() // user's location
