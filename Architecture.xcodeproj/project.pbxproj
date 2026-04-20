@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		22198ED32CCD050700B6D54E /* Artefact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22198ED22CCD050700B6D54E /* Artefact.swift */; };
 		2246B7BC2DAC12BD0019C07B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */; };
+		22481E792F951D9700473943 /* ArtefactToPOIBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22481E782F951D9600473943 /* ArtefactToPOIBridge.swift */; };
 		227C50BC2F6D3E5400103DF0 /* POIInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BB2F6D3E5400103DF0 /* POIInfoView.swift */; };
 		227C50BE2F6D478600103DF0 /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BD2F6D478600103DF0 /* MapOverlay.swift */; };
 		227C50C32F6EC4B300103DF0 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C22F6EC4B300103DF0 /* PointOfInterest.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		22198ED22CCD050700B6D54E /* Artefact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artefact.swift; sourceTree = "<group>"; };
 		2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		22481E782F951D9600473943 /* ArtefactToPOIBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtefactToPOIBridge.swift; sourceTree = "<group>"; };
 		227C50BB2F6D3E5400103DF0 /* POIInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIInfoView.swift; sourceTree = "<group>"; };
 		227C50BD2F6D478600103DF0 /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		227C50C22F6EC4B300103DF0 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		227C50BF2F6D49F300103DF0 /* View&ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				22481E782F951D9600473943 /* ArtefactToPOIBridge.swift */,
 				227C50C22F6EC4B300103DF0 /* PointOfInterest.swift */,
 				22B47CE42F88152000AFC3F4 /* PointOfInterest+MapItem.swift */,
 				22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */,
@@ -339,6 +342,7 @@
 				22B47CE12F7804C700AFC3F4 /* DeviceCornerRadius.swift in Sources */,
 				22B47CDB2F77FF5B00AFC3F4 /* ContentView.swift in Sources */,
 				22E843562C7BA86A0037F215 /* Decoder.swift in Sources */,
+				22481E792F951D9700473943 /* ArtefactToPOIBridge.swift in Sources */,
 				227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */,
 				22B47CE32F880A6600AFC3F4 /* POIInfoViewModel.swift in Sources */,
 				227C50C52F6EF2E900103DF0 /* Fetcher.swift in Sources */,

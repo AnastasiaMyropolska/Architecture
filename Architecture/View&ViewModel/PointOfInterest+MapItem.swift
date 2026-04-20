@@ -8,7 +8,7 @@
 import MapKit
 
 extension PointOfInterest {
-	// is this efficient? move to extension, remove MapKit reference
+	// todo: is this efficient? move to extension, remove MapKit reference
 	func mapItem() -> MKMapItem {
 		return MKMapItem(placemark: MKPlacemark(coordinate: location))
 	}

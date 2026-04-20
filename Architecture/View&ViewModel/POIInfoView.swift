@@ -41,6 +41,13 @@ struct POIInfoView: View {
 			}
 			
 			Spacer()
+				.frame(height: 10)
+
+			VStack(alignment: .leading) {
+				Text("asdf")
+				Text("asdf")
+				Text("asdf")
+			}
 		}
 		.padding()
 		.frame(maxWidth: .infinity, minHeight: 200)

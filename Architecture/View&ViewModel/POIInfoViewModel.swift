@@ -17,7 +17,7 @@ import Foundation
 	}
 
 	var title: String {
-		poi.title ?? "Unknown Location"
+		poi.title
 	}
 
 	var imageURL: URL? {

@@ -8,8 +8,11 @@
 import Foundation
 import CoreLocation
 
-// properties are named the same as in json structure
+/// Model level object representing architectural object decoded from the server
+
 struct Artefact: Decodable {
+
+	// todo: properties are named the same as in json structure
 
 	struct ArtefactsLocation: Decodable {
 		var location: CLLocationCoordinate2D {
@@ -24,11 +27,6 @@ struct Artefact: Decodable {
 	let artefacts_name: String
 	let artefactsLocation: ArtefactsLocation
 
-	func pointOfInterest() -> PointOfInterest {
-		let poi = PointOfInterest(location: self.artefactsLocation.location, title: self.artefacts_name, URL: self.web_reference_wiki, imageURL: self.artefactsImage?.path_to_image)
-		return poi
-	}
-
 	struct ArtefactImage: Decodable {
 		let path_to_image: URL
 		let id: UInt64
@@ -37,4 +35,17 @@ struct Artefact: Decodable {
 	let artefactsImage: ArtefactImage? // can be missing
 
 	let web_reference_wiki: URL
+
+	let id: UInt64
+
+	struct Event: Decodable {
+		let event: String
+		let event_begin: String
+		let event_end: String
+		let id:UInt64
+	}
+
+	let events: [Event]
 }
+
+
