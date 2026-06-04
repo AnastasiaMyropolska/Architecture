@@ -22,6 +22,9 @@ struct MapOverlay: View {
 		VStack(spacing: 0) {
 			DragIndicator()
 
+			Spacer()
+				.frame(height: 10)
+
 			POIHeaderView(viewModel:POIInfoViewModel(poi: selectedItem), shouldDismiss: $shouldDismiss)
 
 			POIInfoView(viewModel:POIInfoViewModel(poi: selectedItem))

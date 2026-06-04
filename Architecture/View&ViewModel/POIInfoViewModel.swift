@@ -10,7 +10,7 @@ import Foundation
 
 @MainActor
 @Observable final class POIInfoViewModel {
-	let poi: PointOfInterest
+	private let poi: PointOfInterest
 
 	init(poi: PointOfInterest) {
 		self.poi = poi
@@ -22,6 +22,10 @@ import Foundation
 
 	var category: String {
 		return poi.categories.joined(separator: ", ")
+	}
+
+	var sourceURL: URL {
+		poi.URL
 	}
 
 	var imageURL: URL? {

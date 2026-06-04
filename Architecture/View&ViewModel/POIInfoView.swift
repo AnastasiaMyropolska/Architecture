@@ -11,7 +11,7 @@ struct POIInfoView: View {
 	let viewModel: POIInfoViewModel
 
 	var body: some View {
-		VStack(alignment: .leading, spacing: 16) {
+		VStack(alignment: .leading, spacing: 10) {
 			if let imageURL = viewModel.imageURL {
 				AsyncImage(url: imageURL) { phase in
 					switch phase {
@@ -41,43 +41,14 @@ struct POIInfoView: View {
 				}
 			}
 
-			VStack(alignment: .leading) {
-				Text(viewModel.category)
-				Text("asdf")
-				Text("asdf")
-			}
+			Link("Learn more on Wiki", destination: viewModel.sourceURL)
+			Text("asdf")
+
+			Spacer()
 		}
 		.padding()
 		.frame(maxWidth: .infinity, minHeight: 200)
 	}
 }
 
-struct POIHeaderView: View {
-	let viewModel: POIInfoViewModel
-	@Binding var shouldDismiss: Bool
 
-	var body: some View {
-		HStack {
-			Spacer()
-				.frame(width: 20)
-
-			Text(viewModel.title)
-				.font(.headline)
-
-			Spacer()
-
-			Button {
-				shouldDismiss = true
-			} label: {
-				Image(systemName: "xmark")
-					.font(.system(size: 14, weight: .semibold))
-					.foregroundStyle(.white)
-					.frame(width: 28, height: 28)
-					.background(.gray.opacity(0.6), in: Circle())
-					.background(.ultraThinMaterial, in: Circle())
-			}
-			.padding(.trailing, 16)
-			.padding(.top, 8)
-		}
-	}
-}

@@ -15,12 +15,12 @@ struct PointOfInterest: Identifiable, Equatable, Hashable { // use Hashable inst
 	let id: UInt64
 	let location: CLLocationCoordinate2D
 	let title: String
-	let URL: URL?
+	let URL: URL
 	let imageURL: URL?
 	let events: [HistoricalEvent]?
 	let categories: [String]
 
-	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL?, imageURL: URL?, events: [HistoricalEvent]? = [], categories: [String]) {
+	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL, imageURL: URL?, events: [HistoricalEvent]? = [], categories: [String]) {
 		self.location = location
 		self.title = title
 		self.URL = URL

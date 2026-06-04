@@ -13,12 +13,12 @@ extension PointOfInterest {
 
 		var events: [PointOfInterest.HistoricalEvent]?
 		for event in artefact.events {
-			let poiEvent: HistoricalEvent? = nil
+			var poiEvent: HistoricalEvent? = nil
 			if event.event == "Creation start" {
-				let poiEvent = HistoricalEvent(eventType: .constructionStarted, eventStart: event.event_begin, eventEnd: event.event_end)
+				poiEvent = HistoricalEvent(eventType: .constructionStarted, eventStart: event.event_begin, eventEnd: event.event_end)
 			}
 			else if event.event == "Creation completed" {
-				let poiEvent = HistoricalEvent(eventType: .constructionCompleted, eventStart: event.event_begin, eventEnd: event.event_end)
+				poiEvent = HistoricalEvent(eventType: .constructionCompleted, eventStart: event.event_begin, eventEnd: event.event_end)
 			}
 
 			if let poiEvent {
