@@ -11,24 +11,23 @@ import CoreLocation
 /// Presenatation level object representing architectural object shown on the map
 
 struct PointOfInterest: Identifiable, Equatable, Hashable { // use Hashable instead of MapSelectable
-	typealias ID = URL
-	var id: ID {
-		URL! // todo: use either wiki URL or another source URL. or should I use artefact.id?
-	}
 
+	let id: UInt64
 	let location: CLLocationCoordinate2D
 	let title: String
 	let URL: URL?
 	let imageURL: URL?
 	let events: [HistoricalEvent]?
+	let categories: [String]
 
-
-	init(location: CLLocationCoordinate2D, title: String, URL: URL?, imageURL: URL?, events: [HistoricalEvent]? = []) {
+	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL?, imageURL: URL?, events: [HistoricalEvent]? = [], categories: [String]) {
 		self.location = location
 		self.title = title
 		self.URL = URL
 		self.imageURL = imageURL
 		self.events = events
+		self.id = id
+		self.categories = categories
 	}
 
     static func == (lhs: PointOfInterest, rhs: PointOfInterest) -> Bool {
@@ -39,11 +38,11 @@ struct PointOfInterest: Identifiable, Equatable, Hashable { // use Hashable inst
 		hasher.combine(id)
     }
 
-	// -------
 	struct HistoricalEvent {
 
 		enum EventType {
-			case construction
+			case constructionStarted
+			case constructionCompleted
 			case other
 		}
 

@@ -20,6 +20,10 @@ import Foundation
 		poi.title
 	}
 
+	var category: String {
+		return poi.categories.joined(separator: ", ")
+	}
+
 	var imageURL: URL? {
 		poi.imageURL
 	}

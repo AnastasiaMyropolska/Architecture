@@ -34,7 +34,7 @@ import MapKit
 				let data = try await Fetcher.fetchRemote(region: region)
 				let artefacts = try await Decoder.decode(data: data)
 
-				let pointsOfInterest = artefacts.map { $0.pointOfInterest() }
+				let pointsOfInterest = artefacts.map { PointOfInterest.poi(from: $0) }
 
 				self?.visiblePois = pointsOfInterest
 

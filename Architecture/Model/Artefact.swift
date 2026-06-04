@@ -14,6 +14,7 @@ struct Artefact: Decodable {
 
 	// todo: properties are named the same as in json structure
 
+	// always set according to server developer
 	struct ArtefactsLocation: Decodable {
 		var location: CLLocationCoordinate2D {
 			return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -24,7 +25,7 @@ struct Artefact: Decodable {
 		let id: UInt64 // ? how long are the ids in json file?
 	}
 
-	let artefacts_name: String
+	let artefacts_name: String // always set according to server developer
 	let artefactsLocation: ArtefactsLocation
 
 	struct ArtefactImage: Decodable {
@@ -34,9 +35,9 @@ struct Artefact: Decodable {
 
 	let artefactsImage: ArtefactImage? // can be missing
 
-	let web_reference_wiki: URL
+	let web_reference_wiki: URL // always set according to server developer
 
-	let id: UInt64
+	let id: UInt64 // always set and unique according to server developer
 
 	struct Event: Decodable {
 		let event: String
@@ -46,6 +47,11 @@ struct Artefact: Decodable {
 	}
 
 	let events: [Event]
+
+	let categories: [Int] // always set according to server developer
+
+	//let page_language // always set according to server developer
+
 }
 
 

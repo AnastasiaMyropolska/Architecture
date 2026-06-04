@@ -27,24 +27,22 @@ struct POIInfoView: View {
 							.frame(maxWidth: .infinity)
 							.frame(height: 200)
 					case .failure:
+						// todo: don't show any image here
 						Image(systemName: "photo")
 							.font(.largeTitle)
 							.foregroundStyle(.gray)
 							.frame(maxWidth: .infinity)
 							.frame(height: 200)
 							.background(Color.gray.opacity(0.2))
+							.cornerRadius(12)
 					@unknown default:
 						EmptyView()
 					}
 				}
-				.cornerRadius(12)
 			}
-			
-			Spacer()
-				.frame(height: 10)
 
 			VStack(alignment: .leading) {
-				Text("asdf")
+				Text(viewModel.category)
 				Text("asdf")
 				Text("asdf")
 			}
