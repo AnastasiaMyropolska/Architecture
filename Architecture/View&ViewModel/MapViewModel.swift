@@ -31,7 +31,8 @@ import MapKit
 				try Task.checkCancellation()
 
 				// parse in background, don't block main thread
-				let data = try await Fetcher.fetchRemote(region: region)
+				//let data = try await Fetcher.fetchRemote(region: region)
+				let data = try await Fetcher.fetchLocal(region: region)
 				let artefacts = try await Decoder.decode(data: data)
 
 				let pointsOfInterest = artefacts.map { PointOfInterest.poi(from: $0) }

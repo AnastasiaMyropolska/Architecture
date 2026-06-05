@@ -17,6 +17,8 @@
 		227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */; };
 		22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACC1D42C568BBE001A3D0F /* LocationManager.swift */; };
 		22B227472FD1EA15002E09DA /* POIHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B227462FD1EA14002E09DA /* POIHeaderView.swift */; };
+		22B227492FD35A55002E09DA /* 20240824.0001_small.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B227482FD35A55002E09DA /* 20240824.0001_small.json */; };
+		22B2274B2FD35C13002E09DA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B2274A2FD35C13002E09DA /* Category.swift */; };
 		22B47CDB2F77FF5B00AFC3F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */; };
 		22B47CDD2F78002B00AFC3F4 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */; };
 		22B47CDF2F78033A00AFC3F4 /* LocationDisabledBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */; };
@@ -63,6 +65,8 @@
 		22980D162C5E7C770021CF8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22ACC1D42C568BBE001A3D0F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		22B227462FD1EA14002E09DA /* POIHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIHeaderView.swift; sourceTree = "<group>"; };
+		22B227482FD35A55002E09DA /* 20240824.0001_small.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 20240824.0001_small.json; sourceTree = "<group>"; };
+		22B2274A2FD35C13002E09DA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDisabledBanner.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				22E843552C7BA86A0037F215 /* Decoder.swift */,
 				227C50C42F6EF2E900103DF0 /* Fetcher.swift */,
 				22198ED22CCD050700B6D54E /* Artefact.swift */,
+				22B2274A2FD35C13002E09DA /* Category.swift */,
 				22ACC1D42C568BBE001A3D0F /* LocationManager.swift */,
 				227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */,
 			);
@@ -203,6 +208,7 @@
 				22B6569F2C1D93E400EEE26F /* Assets.xcassets */,
 				22980D162C5E7C770021CF8B /* Info.plist */,
 				22E843582C7BAD510037F215 /* 20240824.0001.json */,
+				22B227482FD35A55002E09DA /* 20240824.0001_small.json */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E843592C7BAD510037F215 /* 20240824.0001.json in Resources */,
+				22B227492FD35A55002E09DA /* 20240824.0001_small.json in Resources */,
 				22B656A42C1D93E400EEE26F /* Preview Assets.xcassets in Resources */,
 				22B656A02C1D93E400EEE26F /* Assets.xcassets in Resources */,
 			);
@@ -349,6 +356,7 @@
 				227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */,
 				22B227472FD1EA15002E09DA /* POIHeaderView.swift in Sources */,
 				22B47CE32F880A6600AFC3F4 /* POIInfoViewModel.swift in Sources */,
+				22B2274B2FD35C13002E09DA /* Category.swift in Sources */,
 				227C50C52F6EF2E900103DF0 /* Fetcher.swift in Sources */,
 				227C50BC2F6D3E5400103DF0 /* POIInfoView.swift in Sources */,
 				22B6569E2C1D93E200EEE26F /* MapView.swift in Sources */,

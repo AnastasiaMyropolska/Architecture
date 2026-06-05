@@ -16,12 +16,15 @@ struct Decoder {
 
 	private struct ResponseData: Decodable {
 		var artefacts: [Artefact]
+		var categories: [Category]
 	}
 
 	static func decode(data: Data) async throws -> [Artefact] {
 		do {
 			let decodedResponse = try JSONDecoder().decode(ResponseData.self, from: data)
 			let artefacts = decodedResponse.artefacts
+			let categories = decodedResponse.categories
+
 			return artefacts
 		} catch let DecodingError.keyNotFound(key, context) {
 			print("Missing key: \(key), \(context)")
