@@ -9,7 +9,7 @@
 
 extension PointOfInterest {
 	static func poi(from artefact: Artefact) -> Self {
-		let title = artefact.artefacts_name // or if .empty ?? "Unknown"
+		let title = artefact.artefacts_name
 
 		var events: [PointOfInterest.HistoricalEvent]?
 		for event in artefact.events {
@@ -30,7 +30,7 @@ extension PointOfInterest {
 			}
 		}
 
-		let poi = PointOfInterest(location: artefact.artefactsLocation.location, id: artefact.id, title: title, URL: artefact.web_reference_wiki, imageURL: artefact.artefactsImage?.path_to_image, events: events, categories: artefact.categories.map { String($0) } )
+		let poi = PointOfInterest(location: artefact.artefactsLocation.location, id: artefact.id, title: title, URL: artefact.web_reference_wiki, imageURL: artefact.artefactsImage?.path_to_image, events: events, categories: artefact.categories)
 		return poi
 	}
 }

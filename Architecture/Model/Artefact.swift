@@ -48,7 +48,7 @@ struct Artefact: Decodable {
 
 	let events: [Event]
 
-	let categories: [Int] // always set according to server developer
+	let categories: [UInt16] // always set according to server developer
 
 	//let page_language // always set according to server developer
 

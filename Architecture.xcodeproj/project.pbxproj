@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22198ED32CCD050700B6D54E /* Artefact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22198ED22CCD050700B6D54E /* Artefact.swift */; };
+		2240F6972FD4737F0075DC0D /* POICategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2240F6962FD4737E0075DC0D /* POICategory.swift */; };
 		2246B7BC2DAC12BD0019C07B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */; };
 		22481E792F951D9700473943 /* ArtefactToPOIBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22481E782F951D9600473943 /* ArtefactToPOIBridge.swift */; };
 		227C50BC2F6D3E5400103DF0 /* POIInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BB2F6D3E5400103DF0 /* POIInfoView.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		22198ED22CCD050700B6D54E /* Artefact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artefact.swift; sourceTree = "<group>"; };
+		2240F6962FD4737E0075DC0D /* POICategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POICategory.swift; sourceTree = "<group>"; };
 		2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		22481E782F951D9600473943 /* ArtefactToPOIBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtefactToPOIBridge.swift; sourceTree = "<group>"; };
 		227C50BB2F6D3E5400103DF0 /* POIInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIInfoView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				22481E782F951D9600473943 /* ArtefactToPOIBridge.swift */,
 				227C50C22F6EC4B300103DF0 /* PointOfInterest.swift */,
+				2240F6962FD4737E0075DC0D /* POICategory.swift */,
 				22B47CE42F88152000AFC3F4 /* PointOfInterest+MapItem.swift */,
 				22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */,
 				22B47CDC2F78002B00AFC3F4 /* ContentViewModel.swift */,
@@ -348,6 +351,7 @@
 				22B47CDF2F78033A00AFC3F4 /* LocationDisabledBanner.swift in Sources */,
 				227C50C32F6EC4B300103DF0 /* PointOfInterest.swift in Sources */,
 				22B47CDD2F78002B00AFC3F4 /* ContentViewModel.swift in Sources */,
+				2240F6972FD4737F0075DC0D /* POICategory.swift in Sources */,
 				22198ED32CCD050700B6D54E /* Artefact.swift in Sources */,
 				22B47CE12F7804C700AFC3F4 /* DeviceCornerRadius.swift in Sources */,
 				22B47CDB2F77FF5B00AFC3F4 /* ContentView.swift in Sources */,

@@ -21,7 +21,7 @@ import Foundation
 	}
 
 	var category: String {
-		return poi.categories.joined(separator: ", ")
+		return "" //poi.categories.joined(separator: ", ")
 	}
 
 	var sourceURL: URL {

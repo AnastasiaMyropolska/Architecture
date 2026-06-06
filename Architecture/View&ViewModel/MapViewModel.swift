@@ -33,9 +33,12 @@ import MapKit
 				// parse in background, don't block main thread
 				//let data = try await Fetcher.fetchRemote(region: region)
 				let data = try await Fetcher.fetchLocal(region: region)
-				let artefacts = try await Decoder.decode(data: data)
+				let (artefacts, categories) = try await Decoder.decode(data: data)
 
 				let pointsOfInterest = artefacts.map { PointOfInterest.poi(from: $0) }
+
+
+				let poiCategoriesDict: [UInt16: POICategory] = categories.toPoiCategoryDictionary()
 
 				self?.visiblePois = pointsOfInterest
 
@@ -43,7 +46,7 @@ import MapKit
 				// Task was cancelled - nothing to do
 				return
 			} catch {
-				// Parsing failed - need to handle
+				// todo: Parsing failed - need to handle
 				return
 			}
 		}

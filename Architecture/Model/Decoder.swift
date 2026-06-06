@@ -16,16 +16,16 @@ struct Decoder {
 
 	private struct ResponseData: Decodable {
 		var artefacts: [Artefact]
-		var categories: [Category]
+		var categories: [Category1]
 	}
 
-	static func decode(data: Data) async throws -> [Artefact] {
+	static func decode(data: Data) async throws -> ([Artefact], [Category1]) {
 		do {
 			let decodedResponse = try JSONDecoder().decode(ResponseData.self, from: data)
 			let artefacts = decodedResponse.artefacts
 			let categories = decodedResponse.categories
 
-			return artefacts
+			return (artefacts, categories)
 		} catch let DecodingError.keyNotFound(key, context) {
 			print("Missing key: \(key), \(context)")
 		} catch let DecodingError.typeMismatch(type, context) {
@@ -35,7 +35,7 @@ struct Decoder {
 			print(error)
 		}
 
-		return []
+		return ([], [])
 	}
 }
 
