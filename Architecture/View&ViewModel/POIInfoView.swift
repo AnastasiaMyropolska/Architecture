@@ -42,7 +42,7 @@ struct POIInfoView: View {
 			}
 
 			Link("Learn more on Wiki", destination: viewModel.sourceURL)
-			Text("asdf")
+			Text("some more info")
 
 			Spacer()
 		}

@@ -18,16 +18,17 @@ struct PointOfInterest: Identifiable, Equatable, Hashable { // use Hashable inst
 	let URL: URL
 	let imageURL: URL?
 	let events: [HistoricalEvent]?
-	let categories: [UInt16]
+	let architecturalStyleIndexes: [UInt16]
+	var architecturalStyles: [ArchitecturalStyle] = []
 
-	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL, imageURL: URL?, events: [HistoricalEvent]? = [], categories: [UInt16]) {
+	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL, imageURL: URL?, events: [HistoricalEvent]? = [], architecturalStyleIndexes: [UInt16]) {
 		self.location = location
 		self.title = title
 		self.URL = URL
 		self.imageURL = imageURL
 		self.events = events
 		self.id = id
-		self.categories = categories
+		self.architecturalStyleIndexes = architecturalStyleIndexes
 	}
 
     static func == (lhs: PointOfInterest, rhs: PointOfInterest) -> Bool {
@@ -51,5 +52,4 @@ struct PointOfInterest: Identifiable, Equatable, Hashable { // use Hashable inst
 		let eventEnd: String
 	}
 }
-
 

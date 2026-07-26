@@ -8,7 +8,7 @@
 /// initialize POI from Artefact - connection point between Model layer and Presetnation layer
 
 extension PointOfInterest {
-	static func poi(from artefact: Artefact) -> Self {
+	static func create(from artefact: Artefact) -> Self {
 		let title = artefact.artefacts_name
 
 		var events: [PointOfInterest.HistoricalEvent]?
@@ -30,7 +30,7 @@ extension PointOfInterest {
 			}
 		}
 
-		let poi = PointOfInterest(location: artefact.artefactsLocation.location, id: artefact.id, title: title, URL: artefact.web_reference_wiki, imageURL: artefact.artefactsImage?.path_to_image, events: events, categories: artefact.categories)
+		let poi = PointOfInterest(location: artefact.artefactsLocation.location, id: artefact.id, title: title, URL: artefact.web_reference_wiki, imageURL: artefact.artefactsImage?.path_to_image, events: events, architecturalStyleIndexes: artefact.categories)
 		return poi
 	}
 }

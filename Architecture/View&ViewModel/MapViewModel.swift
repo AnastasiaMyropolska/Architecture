@@ -15,11 +15,28 @@ import MapKit
 	private var requestTask: Task<Void, Never>?
 
 	var visiblePois: [PointOfInterest] = []
-	var selectedPoi: PointOfInterest?
+
+	// todo: improve architecturalStyles calculations, i think this 2 properties are not needed
+	//@ObservationIgnored
+	private var _selectedPoi: PointOfInterest?
+	
+	// Computed property returning a copy of the selected POI with its architecturalStyles filtered and assigned
+	var selectedPoi: PointOfInterest? {
+		get {
+			guard var poi = _selectedPoi else { return nil }
+			poi.architecturalStyles = architecturalStyles.filter { poi.architecturalStyleIndexes.contains($0.index) }
+			return poi
+		}
+		set {
+			_selectedPoi = newValue
+		}
+	}
+
+	var architecturalStyles: [ArchitecturalStyle] = []
 
 	func requestArtifacts(for region: MKCoordinateRegion) async {
 		do {
-			visiblePois = try await sendNewRequest(for: region)
+			(visiblePois, architecturalStyles) = try await sendNewRequest(for: region)
 		} catch is CancellationError {
 			// Request was cancelled; ignore
 		} catch {
@@ -27,7 +44,7 @@ import MapKit
 		}
 	}
 
-	func sendNewRequest(for region: MKCoordinateRegion) async throws -> [PointOfInterest] {
+	func sendNewRequest(for region: MKCoordinateRegion) async throws -> ([PointOfInterest], [ArchitecturalStyle]) {
 		// Cancel any previously running fire-and-forget task if present
 		requestTask?.cancel()
 		requestTask = nil
@@ -42,9 +59,9 @@ import MapKit
 		let data = try await Fetcher.fetchRemote(region: region)
 		let (artefacts, categories) = try await Decoder.decode(data: data)
 
-		let pointsOfInterest = artefacts.map { PointOfInterest.poi(from: $0) }
-		let _ = categories.toPoiCategoryDictionary()
+		let pointsOfInterest = artefacts.map { PointOfInterest.create(from: $0) }
+		let architecturalStyles = categories.map { ArchitecturalStyle.create(from: $0) }
 
-		return pointsOfInterest
+		return (pointsOfInterest, architecturalStyles)
 	}
 }
