@@ -30,8 +30,7 @@ struct Decoder {
 			print("Missing key: \(key), \(context)")
 		} catch let DecodingError.typeMismatch(type, context) {
 			print("Type mismatch: \(type), \(context)")
-		}
-		catch {
+		} catch {
 			print(error)
 		}
 

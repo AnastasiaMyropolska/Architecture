@@ -32,7 +32,9 @@ struct MapView: View {
 			UserAnnotation() // user's location
 		}
 		.onMapCameraChange(frequency: .onEnd) { context in
-			viewModel.requestArtifacts(for: context.region)
+			Task { [viewModel] in
+				await viewModel.requestArtifacts(for: context.region)
+			}
 			mapContext = context
 		}
 		.onChange(of: viewModel.selectedPoi) { _, newValue in
