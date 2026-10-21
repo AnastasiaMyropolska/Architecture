@@ -15,26 +15,21 @@ import MapKit
 	private var requestTask: Task<Void, Never>?
 
 	var visibleLandmarks: [Landmark] = []
+	var styles: [Style] = []
 
-	// todo: improve styles calculations, i think this 2 properties are not needed
-	//@ObservationIgnored
 	private var _selectedLandmark: Landmark?
-	
-	// Computed property returning a copy of the selected landmark with its styles filtered and assigned
+
+	// The selected landmark, with its styles resolved once when it is selected
 	var selectedLandmark: Landmark? {
 		get {
-			guard var landmark = _selectedLandmark else {
-				return nil
-			}
-			landmark.styles = styles.filter { landmark.styleIndexes.contains($0.index) }
-			return landmark
+			_selectedLandmark
 		}
 		set {
-			_selectedLandmark = newValue
+			var landmark = newValue
+			landmark?.styles = styles.filter { newValue?.styleIndexes.contains($0.index) == true }
+			_selectedLandmark = landmark
 		}
 	}
-
-	var styles: [Style] = []
 
 	func requestArtifacts(for region: MKCoordinateRegion) async {
 		do {
