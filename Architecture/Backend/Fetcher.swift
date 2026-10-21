@@ -25,7 +25,7 @@ struct Fetcher {
 		return data
 	}
 
-	struct ArtefactRequest: Codable {
+	struct LandmarkDTORequest: Codable {
 		let token: String
 		let thema: String
 		let longitude: Double
@@ -40,7 +40,7 @@ struct Fetcher {
 			throw NetworkingError.resourceNotFound
 		}
 
-		let requestBody = ArtefactRequest(
+		let requestBody = LandmarkDTORequest(
 			token: "pk.eyJ1IjoibXlyb3BvbHNreWkiLCJhIjoiY2t1dHVibDZvMmZlNDJwcDFwMTI3ZjU0dyJ9.J_kmeuSJGKwoKiqQXVfFAQ",
 			thema: "Architecture",
 			longitude: region.center.longitude,

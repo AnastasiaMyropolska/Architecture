@@ -1,5 +1,5 @@
 //
-//  POIInfoView.swift
+//  LandmarkInfoView.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 20.03.26.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct POIInfoView: View {
-	let viewModel: POIInfoViewModel
+struct LandmarkInfoView: View {
+	let viewModel: LandmarkInfoViewModel
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 10) {

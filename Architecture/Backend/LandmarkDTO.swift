@@ -1,5 +1,5 @@
 //
-//  Artefact.swift
+//  LandmarkDTO.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 26.10.24.
@@ -10,12 +10,12 @@ import CoreLocation
 
 /// Model level object representing architectural object decoded from the server
 
-struct Artefact: Decodable {
+struct LandmarkDTO: Decodable {
 
 	// todo: properties are named the same as in json structure
 
 	// always set according to server developer
-	struct ArtefactsLocation: Decodable {
+	struct LandmarkDTOLocation: Decodable {
 		var location: CLLocationCoordinate2D {
 			return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 		}
@@ -26,14 +26,14 @@ struct Artefact: Decodable {
 	}
 
 	let artefacts_name: String // always set according to server developer
-	let artefactsLocation: ArtefactsLocation
+	let artefactsLocation: LandmarkDTOLocation
 
-	struct ArtefactImage: Decodable {
+	struct LandmarkDTOImage: Decodable {
 		let path_to_image: URL
 		let id: UInt64
 	}
 
-	let artefactsImage: ArtefactImage? // can be missing
+	let artefactsImage: LandmarkDTOImage? // can be missing
 
 	let web_reference_wiki: URL // always set according to server developer
 

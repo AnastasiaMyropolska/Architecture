@@ -1,5 +1,5 @@
 //
-//  POIHeaderView.swift
+//  LandmarkHeaderView.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 04.06.26.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct POIHeaderView: View {
-	let viewModel: POIInfoViewModel
+struct LandmarkHeaderView: View {
+	let viewModel: LandmarkInfoViewModel
 	@Binding var shouldDismiss: Bool
 
 	var body: some View {

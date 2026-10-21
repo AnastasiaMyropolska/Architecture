@@ -20,13 +20,13 @@ struct MapView: View {
 	@State private var mapContext: MapCameraUpdateContext?
 
 	var body: some View {
-		Map(position: $cameraPosition, selection: $viewModel.selectedPoi) {
-			ForEach(viewModel.visiblePois) { poi in
+		Map(position: $cameraPosition, selection: $viewModel.selectedLandmark) {
+			ForEach(viewModel.visibleLandmarks) { landmark in
 				Marker(
-					poi.title,
-					coordinate: poi.location
+					landmark.title,
+					coordinate: landmark.location
 				)
-				.tag(poi)
+				.tag(landmark)
 			}
 
 			UserAnnotation() // user's location
@@ -37,7 +37,7 @@ struct MapView: View {
 			}
 			mapContext = context
 		}
-		.onChange(of: viewModel.selectedPoi) { _, newValue in
+		.onChange(of: viewModel.selectedLandmark) { _, newValue in
 			showSheet = newValue != nil
 			
 			if let selectedMarker = newValue, let context = mapContext {
@@ -45,10 +45,10 @@ struct MapView: View {
 			}
 		}
 		.overlay(alignment: .bottom) {
-			if showSheet, let selectedItem = viewModel.selectedPoi {
+			if showSheet, let selectedItem = viewModel.selectedLandmark {
 				MapOverlay(selectedItem: selectedItem,
 						   onDismiss: {
-					viewModel.selectedPoi = nil
+					viewModel.selectedLandmark = nil
 				})
 			}
 		}

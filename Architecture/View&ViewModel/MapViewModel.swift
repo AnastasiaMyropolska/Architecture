@@ -14,29 +14,31 @@ import MapKit
 	@ObservationIgnored
 	private var requestTask: Task<Void, Never>?
 
-	var visiblePois: [PointOfInterest] = []
+	var visibleLandmarks: [Landmark] = []
 
-	// todo: improve architecturalStyles calculations, i think this 2 properties are not needed
+	// todo: improve styles calculations, i think this 2 properties are not needed
 	//@ObservationIgnored
-	private var _selectedPoi: PointOfInterest?
+	private var _selectedLandmark: Landmark?
 	
-	// Computed property returning a copy of the selected POI with its architecturalStyles filtered and assigned
-	var selectedPoi: PointOfInterest? {
+	// Computed property returning a copy of the selected landmark with its styles filtered and assigned
+	var selectedLandmark: Landmark? {
 		get {
-			guard var poi = _selectedPoi else { return nil }
-			poi.architecturalStyles = architecturalStyles.filter { poi.architecturalStyleIndexes.contains($0.index) }
-			return poi
+			guard var landmark = _selectedLandmark else {
+				return nil
+			}
+			landmark.styles = styles.filter { landmark.styleIndexes.contains($0.index) }
+			return landmark
 		}
 		set {
-			_selectedPoi = newValue
+			_selectedLandmark = newValue
 		}
 	}
 
-	var architecturalStyles: [ArchitecturalStyle] = []
+	var styles: [Style] = []
 
 	func requestArtifacts(for region: MKCoordinateRegion) async {
 		do {
-			(visiblePois, architecturalStyles) = try await sendNewRequest(for: region)
+			(visibleLandmarks, styles) = try await sendNewRequest(for: region)
 		} catch is CancellationError {
 			// Request was cancelled; ignore
 		} catch {
@@ -44,7 +46,7 @@ import MapKit
 		}
 	}
 
-	func sendNewRequest(for region: MKCoordinateRegion) async throws -> ([PointOfInterest], [ArchitecturalStyle]) {
+	func sendNewRequest(for region: MKCoordinateRegion) async throws -> ([Landmark], [Style]) {
 		// Cancel any previously running fire-and-forget task if present
 		requestTask?.cancel()
 		requestTask = nil
@@ -56,12 +58,12 @@ import MapKit
 		try Task.checkCancellation()
 
 		// Fetch and decode
-		let data = try await Fetcher.fetchRemote(region: region)
-		let (artefacts, categories) = try await Decoder.decode(data: data)
+		let data = try await Fetcher.fetchLocal(region: region)
+		let (landmarkDTOs, categories) = try await Decoder.decode(data: data)
 
-		let pointsOfInterest = artefacts.map { PointOfInterest.create(from: $0) }
-		let architecturalStyles = categories.map { ArchitecturalStyle.create(from: $0) }
+		let landmarks = landmarkDTOs.map { Landmark.create(from: $0) }
+		let styles = categories.map { Style.create(from: $0) }
 
-		return (pointsOfInterest, architecturalStyles)
+		return (landmarks, styles)
 	}
 }

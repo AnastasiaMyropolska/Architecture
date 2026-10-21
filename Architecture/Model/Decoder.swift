@@ -15,17 +15,17 @@ enum NetworkingError: LocalizedError {
 struct Decoder {
 
 	private struct ResponseData: Decodable {
-		var artefacts: [Artefact]
-		var categories: [ArtefactCategory]
+		var artefacts: [LandmarkDTO]
+		var categories: [CategoryDTO]
 	}
 
-	static func decode(data: Data) async throws -> ([Artefact], [ArtefactCategory]) {
+	static func decode(data: Data) async throws -> ([LandmarkDTO], [CategoryDTO]) {
 		do {
 			let decodedResponse = try JSONDecoder().decode(ResponseData.self, from: data)
-			let artefacts = decodedResponse.artefacts
-			let styles = decodedResponse.categories
+			let landmarksDTOs = decodedResponse.artefacts
+			let categoriesDTOs = decodedResponse.categories
 
-			return (artefacts, styles)
+			return (landmarksDTOs, categoriesDTOs)
 		} catch let DecodingError.keyNotFound(key, context) {
 			print("Missing key: \(key), \(context)")
 		} catch let DecodingError.typeMismatch(type, context) {

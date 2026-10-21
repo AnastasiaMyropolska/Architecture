@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MapOverlay: View {
-	let selectedItem: PointOfInterest // move to view model, remove MapKit
+	let selectedItem: Landmark // move to view model, remove MapKit
 
 	let baseOffset: CGFloat = 20
 
@@ -25,9 +25,9 @@ struct MapOverlay: View {
 			Spacer()
 				.frame(height: 10)
 
-			POIHeaderView(viewModel:POIInfoViewModel(poi: selectedItem), shouldDismiss: $shouldDismiss)
+			LandmarkHeaderView(viewModel:LandmarkInfoViewModel(landmark: selectedItem), shouldDismiss: $shouldDismiss)
 
-			POIInfoView(viewModel:POIInfoViewModel(poi: selectedItem))
+			LandmarkInfoView(viewModel:LandmarkInfoViewModel(landmark: selectedItem))
 		}
 		.frame(height: 400)
 		.frame(maxWidth: .infinity)

@@ -1,5 +1,5 @@
 //
-//  PointOfInterest.swift
+//  Landmark.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 21.03.26.
@@ -10,7 +10,7 @@ import CoreLocation
 
 /// Presenatation level object representing architectural object shown on the map
 
-struct PointOfInterest: Identifiable, Equatable, Hashable { // use Hashable instead of MapSelectable
+struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of MapSelectable
 
 	let id: UInt64
 	let location: CLLocationCoordinate2D
@@ -18,20 +18,20 @@ struct PointOfInterest: Identifiable, Equatable, Hashable { // use Hashable inst
 	let URL: URL
 	let imageURL: URL?
 	let events: [HistoricalEvent]?
-	let architecturalStyleIndexes: [UInt16]
-	var architecturalStyles: [ArchitecturalStyle] = []
+	let styleIndexes: [UInt16]
+	var styles: [Style] = []
 
-	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL, imageURL: URL?, events: [HistoricalEvent]? = [], architecturalStyleIndexes: [UInt16]) {
+	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL, imageURL: URL?, events: [HistoricalEvent]? = [], styleIndexes: [UInt16]) {
 		self.location = location
 		self.title = title
 		self.URL = URL
 		self.imageURL = imageURL
 		self.events = events
 		self.id = id
-		self.architecturalStyleIndexes = architecturalStyleIndexes
+		self.styleIndexes = styleIndexes
 	}
 
-    static func == (lhs: PointOfInterest, rhs: PointOfInterest) -> Bool {
+    static func == (lhs: Landmark, rhs: Landmark) -> Bool {
 		return lhs.id == rhs.id
     }
 
