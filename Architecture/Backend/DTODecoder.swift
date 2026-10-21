@@ -1,18 +1,13 @@
 //
-//  Decoder.swift
+//  DTODecoder.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 25.08.24.
 //
 
-import MapKit
+import Foundation
 
-enum NetworkingError: LocalizedError {
-	case resourceNotFound
-	case serverError
-}
-
-struct Decoder {
+struct DTODecoder {
 
 	private struct ResponseData: Decodable {
 		var artefacts: [LandmarkDTO]

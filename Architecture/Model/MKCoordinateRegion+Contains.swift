@@ -5,7 +5,7 @@
 //  Created by Anastasia Myropolska on 21.03.26.
 //
 
-import MapKit // todo: remove
+import MapKit // todo: extension is not used
 
 extension MKCoordinateRegion {
 	func contains(_ coordinate: CLLocationCoordinate2D) -> Bool {

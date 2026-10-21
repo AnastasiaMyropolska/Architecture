@@ -1,14 +1,19 @@
 //
-//  Fetcher.swift
+//  ServerDataFetcher.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 21.03.26.
 //
 
 import Foundation
-import MapKit
+import MapKit // for MKCoordinateRegion
 
-struct Fetcher {
+struct ServerDataFetcher {
+
+	enum NetworkingError: LocalizedError {
+		case resourceNotFound
+		case serverError
+	}
 
 	static func fetchLocal(region: MKCoordinateRegion) async throws -> Data {
 		guard let url = Bundle.main.url(forResource: "20240824.0001_small", withExtension: "json") else {

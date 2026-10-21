@@ -14,6 +14,9 @@ import MapKit
 	@ObservationIgnored
 	private var requestTask: Task<Void, Never>?
 
+	@ObservationIgnored
+	private let landmarkLoader = LandmarkLoader()
+
 	var visibleLandmarks: [Landmark] = []
 	var styles: [Style] = []
 
@@ -52,13 +55,6 @@ import MapKit
 		try await Task.sleep(for: .milliseconds(400))
 		try Task.checkCancellation()
 
-		// Fetch and decode
-		let data = try await Fetcher.fetchLocal(region: region)
-		let (landmarkDTOs, categories) = try await Decoder.decode(data: data)
-
-		let landmarks = landmarkDTOs.map { Landmark.create(from: $0) }
-		let styles = categories.map { Style.create(from: $0) }
-
-		return (landmarks, styles)
+		return try await landmarkLoader.landmarks(for: region)
 	}
 }
