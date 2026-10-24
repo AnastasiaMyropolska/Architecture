@@ -15,7 +15,7 @@ struct ServerDataFetcher {
 		case serverError
 	}
 
-	static func fetchLocal(region: MKCoordinateRegion) async throws -> Data {
+	static func fetchLocal() async throws -> Data {
 		guard let url = Bundle.main.url(forResource: "20240824.0001_small", withExtension: "json") else {
 			throw NetworkingError.resourceNotFound
 		}

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MapOverlay: View {
-	let selectedItem: Landmark // move to view model, remove MapKit
+	let selectedItem: Landmark
 
-	let baseOffset: CGFloat = 20
+	private let baseOffset: CGFloat = 20
 
 	let onDismiss: () -> Void
 
@@ -75,4 +75,33 @@ struct DragIndicator: View {
 			.padding(.top, 8)
 			.padding(.bottom, 4)
 	}
+}
+
+/// Loads the first landmark from the bundled JSON and shows the overlay for it
+private struct MapOverlayPreview: View {
+	@State private var landmark: Landmark?
+
+	var body: some View {
+		Group {
+			if let landmark {
+				MapOverlay(selectedItem: landmark, onDismiss: {})
+			} else {
+				ProgressView()
+			}
+		}
+		.task {
+			guard let data = try? await ServerDataFetcher.fetchLocal(),
+				  let (landmarkDTOs, categoryDTOs) = try? await DTODecoder.decode(data: data) else { return }
+			guard var first = landmarkDTOs.first.map({ Landmark.create(from: $0) }) else { return }
+			// MapViewModel resolves styles when a landmark is selected, so do the same here
+			let styleIndexes = first.styleIndexes
+			let styles = categoryDTOs.map { Style.create(from: $0) }
+			first.styles = styles.filter { styleIndexes.contains($0.index) }
+			landmark = first
+		}
+	}
+}
+
+#Preview {
+	MapOverlayPreview()
 }

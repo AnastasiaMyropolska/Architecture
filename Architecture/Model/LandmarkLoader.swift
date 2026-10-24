@@ -13,7 +13,7 @@ struct LandmarkLoader {
 	func landmarks(for region: MKCoordinateRegion) async throws -> ([Landmark], [Style]) {
 		// The simulator uses the bundled JSON, a real device talks to the server
 		#if targetEnvironment(simulator)
-		let data = try await ServerDataFetcher.fetchLocal(region: region)
+		let data = try await ServerDataFetcher.fetchLocal()
 		#else
 		let data = try await ServerDataFetcher.fetchRemote(region: region)
 		#endif
