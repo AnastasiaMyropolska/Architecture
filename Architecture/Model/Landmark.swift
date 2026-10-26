@@ -19,9 +19,10 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 	let imageURL: URL?
 	let events: [HistoricalEvent]?
 	let styleIndexes: [UInt16]
+		let synonyms: [Synonym]
 	var styles: [Style] = []
 
-	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL, imageURL: URL?, events: [HistoricalEvent]? = [], styleIndexes: [UInt16]) {
+	init(location: CLLocationCoordinate2D, id: UInt64, title: String, URL: URL, imageURL: URL?, events: [HistoricalEvent]? = [], styleIndexes: [UInt16], synonyms: [Synonym] = []) {
 		self.location = location
 		self.title = title
 		self.URL = URL
@@ -29,6 +30,7 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 		self.events = events
 		self.id = id
 		self.styleIndexes = styleIndexes
+		self.synonyms = synonyms
 	}
 
     static func == (lhs: Landmark, rhs: Landmark) -> Bool {

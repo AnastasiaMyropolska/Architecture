@@ -30,7 +30,10 @@ extension Landmark {
 			}
 		}
 
-		let landmark = Landmark(location: landmarkDTO.artefactsLocation.location, id: landmarkDTO.id, title: title, URL: landmarkDTO.web_reference_wiki, imageURL: landmarkDTO.artefactsImage?.path_to_image, events: events, styleIndexes: landmarkDTO.categories)
+		let synonyms = (landmarkDTO.synonyms ?? []).map { Synonym(from: $0) }
+
+		let landmark = Landmark(location: landmarkDTO.artefactsLocation.location, id: landmarkDTO.id, title: title, URL: landmarkDTO.web_reference_wiki, imageURL: landmarkDTO.artefactsImage?.path_to_image, events: events, styleIndexes: landmarkDTO.categories, synonyms: synonyms)
+
 		return landmark
 	}
 }

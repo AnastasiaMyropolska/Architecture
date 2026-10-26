@@ -48,6 +48,15 @@ struct LandmarkDTO: Decodable {
 
 	let events: [Event]
 
+	struct SynonymDTO: Decodable {
+		let lang: String
+		let lang_name: String
+		let web_reference_wiki: URL
+		let id: UInt64
+	}
+
+	let synonyms: [SynonymDTO]? // can be missing
+
 	let categories: [UInt16] // always set according to server developer
 
 	//let page_language // always set according to server developer
