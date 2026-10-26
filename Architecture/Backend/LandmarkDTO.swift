@@ -36,6 +36,7 @@ struct LandmarkDTO: Decodable {
 	let artefactsImage: LandmarkDTOImage? // can be missing
 
 	let web_reference_wiki: URL // always set according to server developer
+	let page_language: String // always set according to server developer
 
 	let id: UInt64 // always set and unique according to server developer
 
@@ -58,8 +59,6 @@ struct LandmarkDTO: Decodable {
 	let synonyms: [SynonymDTO]? // can be missing
 
 	let categories: [UInt16] // always set according to server developer
-
-	//let page_language // always set according to server developer
 
 }
 

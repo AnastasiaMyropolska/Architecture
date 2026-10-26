@@ -23,7 +23,7 @@ struct MapView: View {
 		Map(position: $cameraPosition, selection: $viewModel.selectedLandmark) {
 			ForEach(viewModel.visibleLandmarks) { landmark in
 				Marker(
-					landmark.title,
+					landmark.localizedName ?? "",
 					coordinate: landmark.location
 				)
 				.tag(landmark)

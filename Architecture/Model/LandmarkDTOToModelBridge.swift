@@ -9,8 +9,6 @@
 
 extension Landmark {
 	static func create(from landmarkDTO: LandmarkDTO) -> Self {
-		let title = landmarkDTO.artefacts_name
-
 		var events: [Landmark.HistoricalEvent]?
 		for event in landmarkDTO.events {
 			var landmarkEvent: HistoricalEvent? = nil
@@ -30,9 +28,13 @@ extension Landmark {
 			}
 		}
 
-		let synonyms = (landmarkDTO.synonyms ?? []).map { Synonym(from: $0) }
+		// the landmark's own page language goes first and wins over a synonym with the same language code
+		var localizedNames = [landmarkDTO.page_language: LocalizedName(name: landmarkDTO.artefacts_name, webReference: landmarkDTO.web_reference_wiki)]
+		for synonym in landmarkDTO.synonyms ?? [] where localizedNames[synonym.lang] == nil {
+			localizedNames[synonym.lang] = LocalizedName(name: synonym.lang_name, webReference: synonym.web_reference_wiki)
+		}
 
-		let landmark = Landmark(location: landmarkDTO.artefactsLocation.location, id: landmarkDTO.id, title: title, URL: landmarkDTO.web_reference_wiki, imageURL: landmarkDTO.artefactsImage?.path_to_image, events: events, styleIndexes: landmarkDTO.categories, synonyms: synonyms)
+		let landmark = Landmark(location: landmarkDTO.artefactsLocation.location, id: landmarkDTO.id, imageURL: landmarkDTO.artefactsImage?.path_to_image, events: events, styleIndexes: landmarkDTO.categories, localizedNames: localizedNames, primaryLanguage: landmarkDTO.page_language)
 
 		return landmark
 	}

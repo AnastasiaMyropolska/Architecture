@@ -41,7 +41,9 @@ struct LandmarkInfoView: View {
 				}
 			}
 
-			Link("Learn more on Wiki", destination: viewModel.sourceURL)
+			if let sourceURL = viewModel.sourceURL {
+				Link("Learn more on Wiki", destination: sourceURL)
+			}
 			Text("some more info")
 
 			Spacer()

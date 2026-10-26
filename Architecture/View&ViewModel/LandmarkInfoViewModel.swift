@@ -17,15 +17,15 @@ import Foundation
 	}
 
 	var title: String {
-		landmark.title
+		landmark.localizedName ?? ""
 	}
 
 	var category: String {
 		landmark.styles.map { $0.name }.joined(separator: ", ")
 	}
 
-	var sourceURL: URL {
-		landmark.URL
+	var sourceURL: URL? {
+		landmark.localizedWebReference
 	}
 
 	var imageURL: URL? {
