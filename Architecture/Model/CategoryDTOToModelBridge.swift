@@ -9,10 +9,16 @@
 
 extension Style {
 	static func create(from category: CategoryDTO) -> Self {
+		// the category's own page language goes first and wins over a synonym with the same language code
+		var localizedStylesNames = [category.page_language: LocalizedStyleName(name: category.category_name, webReference: category.web_reference_wiki)]
+		for synonym in category.synonyms ?? [] where localizedStylesNames[synonym.lang] == nil {
+			localizedStylesNames[synonym.lang] = LocalizedStyleName(name: synonym.lang_name, webReference: synonym.web_reference_wiki)
+		}
+
 		let style = Style(
-			name: category.category_name,
-			URL: category.web_reference_wiki,
-			index: category.id)
+			index: category.id,
+			localizedStylesNames: localizedStylesNames,
+			primaryLanguage: category.page_language)
 		return style
 	}
 }

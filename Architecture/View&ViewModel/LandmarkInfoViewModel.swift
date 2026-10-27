@@ -21,7 +21,7 @@ import Foundation
 	}
 
 	var category: String {
-		landmark.styles.map { $0.name }.joined(separator: ", ")
+		landmark.styles.compactMap { $0.localizedName }.joined(separator: ", ")
 	}
 
 	var sourceURL: URL? {
