@@ -50,6 +50,8 @@ struct MapView: View {
 						   onDismiss: {
 					viewModel.selectedLandmark = nil
 				})
+				// Measure the 8pt bottom gap from the screen edge, not the home indicator
+				.ignoresSafeArea(.container, edges: .bottom)
 			}
 		}
 //		.animation(.spring, value: showSheet)

@@ -18,7 +18,6 @@
 		227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50C62F6EF6F400103DF0 /* MKCoordinateRegion+Contains.swift */; };
 		22AB31D53016181800649C03 /* CategoryDTOToModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB31D43016181800649C03 /* CategoryDTOToModelBridge.swift */; };
 		22ACC1D52C568BBE001A3D0F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACC1D42C568BBE001A3D0F /* LocationManager.swift */; };
-		22B227472FD1EA15002E09DA /* LandmarkHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B227462FD1EA14002E09DA /* LandmarkHeaderView.swift */; };
 		22B227492FD35A55002E09DA /* 20240824.0001_small.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B227482FD35A55002E09DA /* 20240824.0001_small.json */; };
 		22B2274B2FD35C13002E09DA /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B2274A2FD35C13002E09DA /* CategoryDTO.swift */; };
 		22B47CDB2F77FF5B00AFC3F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */; };
@@ -69,7 +68,6 @@
 		22980D162C5E7C770021CF8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22AB31D43016181800649C03 /* CategoryDTOToModelBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTOToModelBridge.swift; sourceTree = "<group>"; };
 		22ACC1D42C568BBE001A3D0F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		22B227462FD1EA14002E09DA /* LandmarkHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkHeaderView.swift; sourceTree = "<group>"; };
 		22B227482FD35A55002E09DA /* 20240824.0001_small.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 20240824.0001_small.json; sourceTree = "<group>"; };
 		22B2274A2FD35C13002E09DA /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
 		22B47CDA2F77FF5B00AFC3F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				227C50BD2F6D478600103DF0 /* MapOverlay.swift */,
 				22B47CE22F880A6600AFC3F4 /* LandmarkInfoViewModel.swift */,
 				227C50BB2F6D3E5400103DF0 /* LandmarkInfoView.swift */,
-				22B227462FD1EA14002E09DA /* LandmarkHeaderView.swift */,
 				22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */,
 				22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */,
 			);
@@ -372,7 +369,6 @@
 				22E843562C7BA86A0037F215 /* DTODecoder.swift in Sources */,
 				22481E792F951D9700473943 /* LandmarkDTOToModelBridge.swift in Sources */,
 				227C50C72F6EF81300103DF0 /* MKCoordinateRegion+Contains.swift in Sources */,
-				22B227472FD1EA15002E09DA /* LandmarkHeaderView.swift in Sources */,
 				22B47CE32F880A6600AFC3F4 /* LandmarkInfoViewModel.swift in Sources */,
 				22B2274B2FD35C13002E09DA /* CategoryDTO.swift in Sources */,
 				227C50C52F6EF2E900103DF0 /* ServerDataFetcher.swift in Sources */,
@@ -564,7 +560,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
@@ -605,7 +601,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;

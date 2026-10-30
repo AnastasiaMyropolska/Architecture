@@ -7,23 +7,13 @@
 
 import SwiftUI
 
+/// Clips the content to a shape that is concentric with the device display corners.
+/// Apply it before any outer padding so the radius is reduced by that inset.
 struct DeviceCornerRadius: ViewModifier {
-
-	private var deviceCornerRadius: CGFloat {
-		// Determine bottom safe area inset from the key window; fall back if unavailable
-		let keyWindow = UIApplication.shared.connectedScenes
-			.compactMap { $0 as? UIWindowScene }
-			.first?
-			.windows
-			.first { $0.isKeyWindow }
-
-		let bottomInset = keyWindow?.safeAreaInsets.bottom ?? 34
-		return max(bottomInset, 38)
-	}
 
 	func body(content: Content) -> some View {
 		content
-			.cornerRadius(deviceCornerRadius)
+			.clipShape(ConcentricRectangle(corners: .concentric(minimum: 12), isUniform: true))
 	}
 }
 

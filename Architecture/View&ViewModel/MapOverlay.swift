@@ -10,7 +10,7 @@ import SwiftUI
 struct MapOverlay: View {
 	let selectedItem: Landmark
 
-	private let baseOffset: CGFloat = 20
+	private let baseOffset: CGFloat = 0
 
 	let onDismiss: () -> Void
 
@@ -19,22 +19,20 @@ struct MapOverlay: View {
 	@State private var shouldDismiss = false
 
 	var body: some View {
-		VStack(spacing: 0) {
+		LandmarkInfoView(viewModel: LandmarkInfoViewModel(landmark: selectedItem))
+		.overlay(alignment: .top) {
 			DragIndicator()
-
-			Spacer()
-				.frame(height: 10)
-
-			LandmarkHeaderView(viewModel:LandmarkInfoViewModel(landmark: selectedItem), shouldDismiss: $shouldDismiss)
-
-			LandmarkInfoView(viewModel:LandmarkInfoViewModel(landmark: selectedItem))
 		}
 		.frame(height: 400)
 		.frame(maxWidth: .infinity)
 		.background(.ultraThinMaterial)
 		.deviceCornerRadius()
+		.overlay(alignment: .topTrailing) {
+			DismissButton { shouldDismiss = true }
+		}
 		.shadow(radius: 10)
-		.padding(.horizontal)
+		.padding(.horizontal, 8)
+			.padding(.bottom, 8)
 		.offset(y: dragOffset + baseOffset)
 		.transition(.move(edge: .bottom).combined(with: .opacity))
 		.onChange(of: shouldDismiss, { oldValue, newValue in
@@ -72,8 +70,24 @@ struct DragIndicator: View {
 		Capsule()
 			.fill(.secondary.opacity(0.5))
 			.frame(width: 40, height: 5)
-			.padding(.top, 8)
+			.padding(.top, 20)
 			.padding(.bottom, 4)
+	}
+}
+
+struct DismissButton: View {
+	let action: () -> Void
+
+	var body: some View {
+		Button(action: action) {
+			Image(systemName: "xmark")
+				.font(.system(size: 14, weight: .semibold))
+				.foregroundStyle(.white)
+				.frame(width: 28, height: 28)
+				.background(.gray.opacity(0.6), in: Circle())
+				.background(.ultraThinMaterial, in: Circle())
+		}
+		.padding(14)
 	}
 }
 

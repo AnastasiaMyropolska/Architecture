@@ -20,8 +20,16 @@ import Foundation
 		landmark.localizedName ?? ""
 	}
 
-	var category: String {
-		landmark.styles.compactMap { $0.localizedName }.joined(separator: ", ")
+	var styles: [String] {
+		landmark.styles.compactMap { $0.localizedName }
+	}
+
+	var started: String? {
+		dateText(for: .constructionStarted)
+	}
+
+	var completed: String? {
+		dateText(for: .constructionCompleted)
 	}
 
 	var sourceURL: URL? {
@@ -30,6 +38,19 @@ import Foundation
 
 	var imageURL: URL? {
 		landmark.imageURL
+	}
+
+	/// "834" or "834 – 850"; nil when the landmark has no such event or the dates are blank
+	private func dateText(for type: Landmark.HistoricalEvent.EventType) -> String? {
+		guard let event = landmark.events?.first(where: { $0.eventType == type }) else { return nil }
+		let start = event.eventStart.trimmingCharacters(in: .whitespaces)
+		let end = event.eventEnd.trimmingCharacters(in: .whitespaces)
+		switch (start.isEmpty, end.isEmpty) {
+		case (true, true): return nil
+		case (false, true): return start
+		case (true, false): return end
+		case (false, false): return start == end ? start : "\(start) – \(end)"
+		}
 	}
 }
 
