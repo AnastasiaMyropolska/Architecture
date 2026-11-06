@@ -14,7 +14,8 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 
 	let id: UInt64
 	let location: CLLocationCoordinate2D
-	let imageURL: URL?
+	/// scaled-down version of the landmark's image, suitable for showing in the UI
+	let thumbnailURL: URL?
 	let events: [HistoricalEvent]?
 	let styleIndexes: [UInt16]
 	/// keyed by language code
@@ -42,12 +43,26 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 
 	init(location: CLLocationCoordinate2D, id: UInt64, imageURL: URL?, events: [HistoricalEvent]? = [], styleIndexes: [UInt16], localizedNames: [String: LocalizedName], primaryLanguage: String) {
 		self.location = location
-		self.imageURL = imageURL
+		self.thumbnailURL = imageURL.map(Self.thumbnailURL(for:))
 		self.events = events
 		self.id = id
 		self.styleIndexes = styleIndexes
 		self.localizedNames = localizedNames
 		self.primaryLanguage = primaryLanguage
+	}
+
+	/// Swaps a multi-megabyte Wikimedia Commons original for a scaled thumbnail; other URLs are unchanged.
+	private static func thumbnailURL(for imageURL: URL) -> URL {
+		let thumbnailWidth = 800
+		guard imageURL.host() == "upload.wikimedia.org",
+			  imageURL.path().hasPrefix("/wikipedia/commons/"),
+			  !imageURL.path().hasPrefix("/wikipedia/commons/thumb/"),
+			  let filePathURL = URL(string: "https://commons.wikimedia.org/wiki/Special:FilePath") else {
+			return imageURL
+		}
+		return filePathURL
+			.appendingPathComponent(imageURL.lastPathComponent)
+			.appending(queryItems: [URLQueryItem(name: "width", value: String(thumbnailWidth))])
 	}
 
     static func == (lhs: Landmark, rhs: Landmark) -> Bool {

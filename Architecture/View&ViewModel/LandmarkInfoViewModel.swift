@@ -37,7 +37,7 @@ import Foundation
 	}
 
 	var imageURL: URL? {
-		landmark.imageURL
+		landmark.thumbnailURL
 	}
 
 	/// "834" or "834 – 850"; nil when the landmark has no such event or the dates are blank
