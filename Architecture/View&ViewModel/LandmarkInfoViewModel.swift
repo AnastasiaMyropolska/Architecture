@@ -16,6 +16,10 @@ import Foundation
 		self.landmark = landmark
 	}
 
+	var landmarkID: Landmark.ID {
+		landmark.id
+	}
+
 	var title: String {
 		landmark.localizedName ?? ""
 	}

@@ -43,6 +43,8 @@ struct LandmarkInfoView: View {
 				} placeholder: {
 					EmptyView()
 				}
+				// Tie the image's lifetime to the landmark so a new selection never keeps the previous image
+				.id(viewModel.landmarkID)
 			}
 			.clipped()
 	}
