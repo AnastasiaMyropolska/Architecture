@@ -43,8 +43,9 @@ struct LandmarkInfoView: View {
 				} placeholder: {
 					EmptyView()
 				}
-				// Tie the image's lifetime to the landmark so a new selection never keeps the previous image
 				.id(viewModel.landmarkID)
+				// .clipped() doesn't clip hit testing, so a portrait image would swallow touches outside the overlay
+				.allowsHitTesting(false)
 			}
 			.clipped()
 	}
