@@ -52,17 +52,27 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 	}
 
 	/// Swaps a multi-megabyte Wikimedia Commons original for a scaled thumbnail; other URLs are unchanged.
+	///
+	/// Points straight at the CDN thumbnail (`/commons/thumb/a/ab/File.jpg/960px-File.jpg`) instead of going
+	/// through `Special:FilePath`, which costs an extra redirect. 960 is one of Wikimedia's standard
+	/// thumbnail widths, so it is more likely to be pre-rendered than an arbitrary width.
 	private static func thumbnailURL(for imageURL: URL) -> URL {
-		let thumbnailWidth = 800
+		let thumbnailWidth = 960
+		let originalPrefix = "/wikipedia/commons/"
+		let path = imageURL.path(percentEncoded: true)
+		let fileName = (path as NSString).lastPathComponent
+		// Only raster formats keep their extension in thumbnail names (SVG, TIFF, PDF get a .png suffix).
+		let rasterExtensions = ["jpg", "jpeg", "png", "gif"]
 		guard imageURL.host() == "upload.wikimedia.org",
-			  imageURL.path().hasPrefix("/wikipedia/commons/"),
-			  !imageURL.path().hasPrefix("/wikipedia/commons/thumb/"),
-			  let filePathURL = URL(string: "https://commons.wikimedia.org/wiki/Special:FilePath") else {
+			  path.hasPrefix(originalPrefix),
+			  !path.hasPrefix(originalPrefix + "thumb/"),
+			  rasterExtensions.contains((fileName as NSString).pathExtension.lowercased()),
+			  var components = URLComponents(url: imageURL, resolvingAgainstBaseURL: false) else {
 			return imageURL
 		}
-		return filePathURL
-			.appendingPathComponent(imageURL.lastPathComponent)
-			.appending(queryItems: [URLQueryItem(name: "width", value: String(thumbnailWidth))])
+		components.percentEncodedPath = originalPrefix + "thumb/" + path.dropFirst(originalPrefix.count)
+			+ "/\(thumbnailWidth)px-" + fileName
+		return components.url ?? imageURL
 	}
 
     static func == (lhs: Landmark, rhs: Landmark) -> Bool {
