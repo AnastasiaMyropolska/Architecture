@@ -23,7 +23,7 @@ struct MapOverlay: View {
 		.overlay(alignment: .top) {
 			DragIndicator()
 		}
-		.frame(height: 400)
+		.frame(height: 510)
 		.frame(maxWidth: .infinity)
 		.background(.ultraThinMaterial)
 		.deviceCornerRadius()

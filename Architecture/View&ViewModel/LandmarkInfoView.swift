@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Hero image with the title on top of it, followed by style chips, dates and the source link
+/// Hero image with the title on top of it, followed by style, architect, dates and the actions
 struct LandmarkInfoView: View {
 	let viewModel: LandmarkInfoViewModel
 
@@ -21,14 +21,22 @@ struct LandmarkInfoView: View {
 					.foregroundStyle(.white)
 					.padding()
 			}
-			.frame(height: 270)
+			.frame(height: 250)
 			.clipped()
 
-			VStack(alignment: .leading, spacing: 10) {
-				StyleChips(styles: viewModel.styles)
-				DateLines(started: viewModel.started, completed: viewModel.completed)
+			VStack(alignment: .leading, spacing: 12) {
+				if !viewModel.styles.isEmpty {
+					InfoRow(icon: "building.columns", title: "Style", value: viewModel.styles.joined(separator: ", "))
+				}
+				if let authors = viewModel.authors {
+					InfoRow(icon: "person", title: "Architect", value: authors)
+				}
+				if let dates = viewModel.dates {
+					InfoRow(icon: "calendar", title: "Built", value: dates)
+				}
 				Spacer(minLength: 0)
-				LandmarkActions(sourceURL: viewModel.sourceURL, onDirections: viewModel.openDirections)
+				LandmarkActions(onDirections: viewModel.openDirections)
+				WikiLink(url: viewModel.sourceURL)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.padding()
@@ -51,31 +59,40 @@ struct LandmarkInfoView: View {
 	}
 }
 
-/// Directions and wiki buttons at the bottom of the card
-struct LandmarkActions: View {
-	let sourceURL: URL?
-	let onDirections: () -> Void
-
-	@Environment(\.openURL) private var openURL
+/// One labelled fact with a tinted icon
+struct InfoRow: View {
+	let icon: String
+	let title: LocalizedStringKey
+	let value: String
 
 	var body: some View {
 		HStack(spacing: 12) {
-			Button(action: onDirections) {
-				Label("Directions", systemImage: "arrow.triangle.turn.up.right.diamond.fill")
-					.frame(maxWidth: .infinity)
-			}
-			.buttonStyle(.glassProminent)
-
-			if let sourceURL {
-				Button {
-					openURL(sourceURL)
-				} label: {
-					Label("Wikipedia", systemImage: "arrow.up.right.square")
-						.frame(maxWidth: .infinity)
-				}
-				.buttonStyle(.glass)
+			Image(systemName: icon)
+				.font(.subheadline.weight(.semibold))
+				.foregroundStyle(.tint)
+				.frame(width: 32, height: 32)
+				.background(.tint.opacity(0.15), in: RoundedRectangle(cornerRadius: 9))
+			VStack(alignment: .leading, spacing: 0) {
+				Text(title)
+					.font(.caption)
+					.foregroundStyle(.secondary)
+				Text(value)
+					.font(.subheadline.weight(.semibold))
 			}
 		}
+	}
+}
+
+/// Directions button at the bottom of the card
+struct LandmarkActions: View {
+	let onDirections: () -> Void
+
+	var body: some View {
+		Button(action: onDirections) {
+			Label("Directions", systemImage: "arrow.triangle.turn.up.right.diamond.fill")
+				.frame(maxWidth: .infinity)
+		}
+		.buttonStyle(.glassProminent)
 		.controlSize(.large)
 	}
 }
@@ -130,24 +147,6 @@ struct StyleChips: View {
 					.background(.tint.opacity(0.15), in: Capsule())
 			}
 		}
-	}
-}
-
-struct DateLines: View {
-	let started: String?
-	let completed: String?
-
-	var body: some View {
-		VStack(alignment: .leading, spacing: 4) {
-			if let started {
-				Label("Started \(started)", systemImage: "hammer")
-			}
-			if let completed {
-				Label("Completed \(completed)", systemImage: "checkmark.seal")
-			}
-		}
-		.font(.subheadline)
-		.foregroundStyle(.secondary)
 	}
 }
 

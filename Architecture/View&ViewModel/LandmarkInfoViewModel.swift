@@ -45,6 +45,16 @@ import Foundation
 		dateText(for: .constructionCompleted)
 	}
 
+	/// "834 – 850" built from the start and completion dates; nil when neither is known
+	var dates: String? {
+		switch (started, completed) {
+		case let (started?, completed?): return started == completed ? started : "\(started) – \(completed)"
+		case let (started?, nil): return "from \(started)"
+		case let (nil, completed?): return "until \(completed)"
+		case (nil, nil): return nil
+		}
+	}
+
 	var sourceURL: URL? {
 		landmark.localizedWebReference
 	}
