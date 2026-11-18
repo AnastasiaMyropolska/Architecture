@@ -28,6 +28,11 @@ import Foundation
 		landmark.styles.compactMap { $0.localizedName }
 	}
 
+	/// "Gustave Eiffel" or "A, B"; nil when the landmark has no known author
+	var authors: String? {
+		landmark.authors.isEmpty ? nil : landmark.authors.formatted(.list(type: .and, width: .narrow))
+	}
+
 	var started: String? {
 		dateText(for: .constructionStarted)
 	}

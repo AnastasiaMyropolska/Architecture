@@ -34,7 +34,7 @@ extension Landmark {
 			localizedNames[synonym.lang] = LocalizedName(name: synonym.lang_name, webReference: synonym.web_reference_wiki)
 		}
 
-		let landmark = Landmark(location: landmarkDTO.artefactsLocation.location, id: landmarkDTO.id, imageURL: landmarkDTO.artefactsImage?.path_to_image, events: events, styleIndexes: landmarkDTO.categories, localizedNames: localizedNames, primaryLanguage: landmarkDTO.page_language)
+		let landmark = Landmark(location: landmarkDTO.artefactsLocation.location, id: landmarkDTO.id, imageURL: landmarkDTO.artefactsImage?.path_to_image, events: events, authors: (landmarkDTO.authors ?? []).map(\.author_name), styleIndexes: landmarkDTO.categories, localizedNames: localizedNames, primaryLanguage: landmarkDTO.page_language)
 
 		return landmark
 	}

@@ -17,6 +17,8 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 	/// scaled-down version of the landmark's image, suitable for showing in the UI
 	let thumbnailURL: URL?
 	let events: [HistoricalEvent]?
+	/// names of the architects (authors) of the landmark
+	let authors: [String]
 	let styleIndexes: [UInt16]
 	/// keyed by language code
 	private let localizedNames: [String: LocalizedName]
@@ -41,8 +43,9 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 		preferredLocalizedName?.webReference
 	}
 
-	init(location: CLLocationCoordinate2D, id: UInt64, imageURL: URL?, events: [HistoricalEvent]? = [], styleIndexes: [UInt16], localizedNames: [String: LocalizedName], primaryLanguage: String) {
+	init(location: CLLocationCoordinate2D, id: UInt64, imageURL: URL?, events: [HistoricalEvent]? = [], authors: [String] = [], styleIndexes: [UInt16], localizedNames: [String: LocalizedName], primaryLanguage: String) {
 		self.location = location
+		self.authors = authors
 		self.thumbnailURL = imageURL.map(Self.thumbnailURL(for:))
 		self.events = events
 		self.id = id

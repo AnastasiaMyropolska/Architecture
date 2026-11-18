@@ -58,6 +58,14 @@ struct LandmarkDTO: Decodable {
 
 	let synonyms: [SynonymDTO]? // can be missing
 
+	struct AuthorDTO: Decodable {
+		let author_name: String
+		let id: UInt64
+		let id_web_authors: UInt64? // can be missing; refers to an entry in the top level webAuthors list
+	}
+
+	let authors: [AuthorDTO]? // present in the current data, but not guaranteed by the server developer
+
 	let categories: [UInt16] // always set according to server developer
 
 }
