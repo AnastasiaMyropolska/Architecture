@@ -81,12 +81,13 @@ struct DismissButton: View {
 	var body: some View {
 		Button(action: action) {
 			Image(systemName: "xmark")
-				.font(.system(size: 14, weight: .semibold))
-				.foregroundStyle(.white)
-				.frame(width: 28, height: 28)
-				.background(.gray.opacity(0.6), in: Circle())
-				.background(.ultraThinMaterial, in: Circle())
+				.font(.headline.weight(.medium))
+				// between the regular and large control sizes, which are the only built-in steps
+				.padding(6)
 		}
+		.buttonStyle(.glass)
+		.buttonBorderShape(.circle)
+		.controlSize(.regular)
 		.padding(14)
 	}
 }

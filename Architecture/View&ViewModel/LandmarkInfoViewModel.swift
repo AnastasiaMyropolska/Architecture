@@ -24,8 +24,18 @@ import Foundation
 		landmark.localizedName ?? ""
 	}
 
+	/// Style names without the wiki "Category:" prefix and " - Wikipedia" suffix, if present
 	var styles: [String] {
-		landmark.styles.compactMap { $0.localizedName }
+		landmark.styles.compactMap { $0.localizedName }.map { name in
+			var name = name
+			if name.hasPrefix("Category:") {
+				name.removeFirst("Category:".count)
+			}
+			if name.hasSuffix(" - Wikipedia") {
+				name.removeLast(" - Wikipedia".count)
+			}
+			return name.trimmingCharacters(in: .whitespaces)
+		}
 	}
 
 	/// "Gustave Eiffel" or "A, B"; nil when the landmark has no known author
