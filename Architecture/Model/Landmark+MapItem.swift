@@ -12,4 +12,11 @@ extension Landmark {
 	func mapItem() -> MKMapItem {
 		return MKMapItem(placemark: MKPlacemark(coordinate: location))
 	}
+
+	/// Opens Apple Maps with directions to the landmark
+	func openDirections() {
+		let item = mapItem()
+		item.name = localizedName
+		item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
+	}
 }

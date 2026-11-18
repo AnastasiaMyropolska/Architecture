@@ -33,6 +33,10 @@ import Foundation
 		landmark.authors.isEmpty ? nil : landmark.authors.formatted(.list(type: .and, width: .narrow))
 	}
 
+	func openDirections() {
+		landmark.openDirections()
+	}
+
 	var started: String? {
 		dateText(for: .constructionStarted)
 	}

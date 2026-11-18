@@ -28,7 +28,7 @@ struct LandmarkInfoView: View {
 				StyleChips(styles: viewModel.styles)
 				DateLines(started: viewModel.started, completed: viewModel.completed)
 				Spacer(minLength: 0)
-				WikiLink(url: viewModel.sourceURL)
+				LandmarkActions(sourceURL: viewModel.sourceURL, onDirections: viewModel.openDirections)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.padding()
@@ -48,6 +48,35 @@ struct LandmarkInfoView: View {
 				.allowsHitTesting(false)
 			}
 			.clipped()
+	}
+}
+
+/// Directions and wiki buttons at the bottom of the card
+struct LandmarkActions: View {
+	let sourceURL: URL?
+	let onDirections: () -> Void
+
+	@Environment(\.openURL) private var openURL
+
+	var body: some View {
+		HStack(spacing: 12) {
+			Button(action: onDirections) {
+				Label("Directions", systemImage: "arrow.triangle.turn.up.right.diamond.fill")
+					.frame(maxWidth: .infinity)
+			}
+			.buttonStyle(.glassProminent)
+
+			if let sourceURL {
+				Button {
+					openURL(sourceURL)
+				} label: {
+					Label("Wikipedia", systemImage: "arrow.up.right.square")
+						.frame(maxWidth: .infinity)
+				}
+				.buttonStyle(.glass)
+			}
+		}
+		.controlSize(.large)
 	}
 }
 
