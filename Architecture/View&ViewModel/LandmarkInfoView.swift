@@ -78,6 +78,9 @@ struct InfoRow: View {
 					.foregroundStyle(.secondary)
 				Text(value)
 					.font(.subheadline.weight(.semibold))
+					.lineLimit(2)
+					// take the height needed for a second line instead of truncating to one
+					.fixedSize(horizontal: false, vertical: true)
 			}
 		}
 	}

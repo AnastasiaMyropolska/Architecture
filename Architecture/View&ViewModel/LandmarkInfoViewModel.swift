@@ -55,12 +55,15 @@ import Foundation
 		dateText(for: .constructionCompleted)
 	}
 
-	/// "834 – 850" built from the start and completion dates; nil when neither is known
+	/// "in 834", "from 834 to 850", "Started in 834" or "Finished in 850" (a lone completion range "834 – 850" reads "from 834 to 850"); nil when neither date is known
 	var dates: String? {
 		switch (started, completed) {
-		case let (started?, completed?): return started == completed ? started : "\(started) – \(completed)"
-		case let (started?, nil): return "from \(started)"
-		case let (nil, completed?): return "until \(completed)"
+		case let (started?, completed?): return started == completed ? "in \(started)" : "from \(started) to \(completed)"
+		case let (started?, nil): return "Started in \(started)"
+		case let (nil, completed?):
+			// a completion given as a range ("834 – 850") reads as a span rather than a finish date
+			let bounds = completed.components(separatedBy: " – ")
+			return bounds.count == 2 ? "from \(bounds[0]) to \(bounds[1])" : "Finished in \(completed)"
 		case (nil, nil): return nil
 		}
 	}
