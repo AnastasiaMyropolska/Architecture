@@ -18,6 +18,8 @@ struct MapView: View {
 	
 	@State private var mapFrame: CGRect = .zero
 	@State private var mapContext: MapCameraUpdateContext?
+	// True from the first location fix until the initial request is made on the next camera event
+	@State private var isWaitingForInitialRequest = false
 
 	var body: some View {
 		Map(position: $cameraPosition, selection: $viewModel.selectedLandmark) {
@@ -32,10 +34,20 @@ struct MapView: View {
 			UserAnnotation() // user's location
 		}
 		.onMapCameraChange(frequency: .onEnd) { context in
-			Task { [viewModel] in
-				await viewModel.requestArtifacts(for: context.region)
+			// Request landmarks only on the initial load (the first camera event after the user's location is known)
+			// and when the user moved the map.
+			// MapKit also reports camera-end events when the camera has not moved (e.g. while following the user's location),
+			// reacting to those would start an endless request loop
+			if isWaitingForInitialRequest {
+				isWaitingForInitialRequest = false
+				viewModel.requestArtifacts(for: context.region)
+			} else if cameraPosition.positionedByUser {
+				viewModel.requestArtifacts(for: context.region)
 			}
 			mapContext = context
+		}
+		.task {
+			isWaitingForInitialRequest = await viewModel.waitForFirstLocationFix()
 		}
 		.onChange(of: viewModel.selectedLandmark) { _, newValue in
 			showSheet = newValue != nil
