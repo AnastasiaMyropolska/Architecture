@@ -43,6 +43,19 @@ struct Landmark: Identifiable, Equatable, Hashable { // use Hashable instead of 
 		preferredLocalizedName?.webReference
 	}
 
+	/// Intro text of the landmark's wiki page in the user's preferred language (see `localizedWebReference`).
+	///
+	/// Fetched on access, nothing is loaded until this is read; repeated reads are served from `WikipediaSummaryCache`.
+	/// nil if there is no wiki page, no usable intro, or the request failed.
+	var description: String? {
+		get async {
+			guard let webReference = localizedWebReference else {
+				return nil
+			}
+			return try? await WikipediaSummaryCache.shared.intro(forArticle: webReference)
+		}
+	}
+
 	init(location: CLLocationCoordinate2D, id: UInt64, imageURL: URL?, events: [HistoricalEvent]? = [], authors: [String] = [], styleIndexes: [UInt16], localizedNames: [String: LocalizedName], primaryLanguage: String) {
 		self.location = location
 		self.authors = authors

@@ -34,12 +34,24 @@ struct LandmarkInfoView: View {
 				if let dates = viewModel.dates {
 					InfoRow(icon: "calendar", title: "Built", value: dates)
 				}
-				Spacer(minLength: 0)
+				if let description = viewModel.description {
+					// scrolls when the intro is longer than the space left above the actions
+					ScrollView {
+						Text(description)
+							.font(.subheadline)
+							.frame(maxWidth: .infinity, alignment: .leading)
+					}
+				} else {
+					Spacer(minLength: 0)
+				}
 				LandmarkActions(onDirections: viewModel.openDirections)
 				WikiLink(url: viewModel.sourceURL)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.padding()
+		}
+		.task {
+			await viewModel.loadDescription()
 		}
 	}
 

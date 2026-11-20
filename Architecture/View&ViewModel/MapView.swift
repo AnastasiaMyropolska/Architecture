@@ -62,6 +62,8 @@ struct MapView: View {
 						   onDismiss: {
 					viewModel.selectedLandmark = nil
 				})
+				// a new overlay (and view model) per landmark, so loaded state never carries over to another one
+				.id(selectedItem.id)
 				// Measure the 8pt bottom gap from the screen edge, not the home indicator
 				.ignoresSafeArea(.container, edges: .bottom)
 			}

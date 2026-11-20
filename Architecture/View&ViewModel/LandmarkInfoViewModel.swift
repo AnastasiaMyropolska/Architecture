@@ -43,6 +43,16 @@ import Foundation
 		landmark.authors.isEmpty ? nil : landmark.authors.formatted(.list(type: .and, width: .narrow))
 	}
 
+	/// Intro text of the landmark's wiki page; nil until `loadDescription()` finishes, and if there is none or it could not be loaded
+	private(set) var description: String?
+
+	func loadDescription() async {
+		let loadedDescription = await landmark.description
+		// a cancelled load comes back as nil (see `Landmark.description`) and is not a result
+		guard !Task.isCancelled else { return }
+		description = loadedDescription
+	}
+
 	func openDirections() {
 		landmark.openDirections()
 	}

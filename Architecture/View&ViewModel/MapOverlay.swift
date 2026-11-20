@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MapOverlay: View {
-	let selectedItem: Landmark
+	/// Created once per overlay, not in `body`: `body` re-runs on every drag frame and would replace a view model that holds loaded state.
+	/// The presenter gives the overlay `.id(landmark.id)`, so selecting another landmark creates a new overlay and a new view model.
+	@State private var viewModel: LandmarkInfoViewModel
 
 	private let baseOffset: CGFloat = 0
 
@@ -18,8 +20,13 @@ struct MapOverlay: View {
 
 	@State private var shouldDismiss = false
 
+	init(selectedItem: Landmark, onDismiss: @escaping () -> Void) {
+		_viewModel = State(initialValue: LandmarkInfoViewModel(landmark: selectedItem))
+		self.onDismiss = onDismiss
+	}
+
 	var body: some View {
-		LandmarkInfoView(viewModel: LandmarkInfoViewModel(landmark: selectedItem))
+		LandmarkInfoView(viewModel: viewModel)
 		.overlay(alignment: .top) {
 			DragIndicator()
 		}
