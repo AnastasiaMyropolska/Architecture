@@ -10,6 +10,7 @@ import Foundation
 
 @MainActor
 @Observable final class LandmarkInfoViewModel {
+
 	private let landmark: Landmark
 
 	init(landmark: Landmark) {

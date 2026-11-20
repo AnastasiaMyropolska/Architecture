@@ -12,6 +12,8 @@
 		2246B7BC2DAC12BD0019C07B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */; };
 		22481E792F951D9700473943 /* LandmarkDTOToModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22481E782F951D9600473943 /* LandmarkDTOToModelBridge.swift */; };
 		227BCFE330B03FD20021F860 /* WikipediaSummaryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227BCFE230B03FD20021F860 /* WikipediaSummaryCache.swift */; };
+		227BCFE530B04E7C0021F860 /* LookAroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227BCFE430B04E7C0021F860 /* LookAroundViewModel.swift */; };
+		227BCFE730B050840021F860 /* LookAroundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227BCFE630B050840021F860 /* LookAroundButton.swift */; };
 		227C50BC2F6D3E5400103DF0 /* LandmarkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BB2F6D3E5400103DF0 /* LandmarkInfoView.swift */; };
 		227C50BE2F6D478600103DF0 /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50BD2F6D478600103DF0 /* MapOverlay.swift */; };
 		227C50F12F6D478600103DF0 /* LandmarkFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227C50F02F6D478600103DF0 /* LandmarkFilterView.swift */; };
@@ -64,6 +66,8 @@
 		2246B7BB2DAC12BD0019C07B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		22481E782F951D9600473943 /* LandmarkDTOToModelBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDTOToModelBridge.swift; sourceTree = "<group>"; };
 		227BCFE230B03FD20021F860 /* WikipediaSummaryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaSummaryCache.swift; sourceTree = "<group>"; };
+		227BCFE430B04E7C0021F860 /* LookAroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookAroundViewModel.swift; sourceTree = "<group>"; };
+		227BCFE630B050840021F860 /* LookAroundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookAroundButton.swift; sourceTree = "<group>"; };
 		227C50BB2F6D3E5400103DF0 /* LandmarkInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkInfoView.swift; sourceTree = "<group>"; };
 		227C50BD2F6D478600103DF0 /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		227C50F02F6D478600103DF0 /* LandmarkFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkFilterView.swift; sourceTree = "<group>"; };
@@ -102,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				227BCFE330B03FD20021F860 /* WikipediaSummaryCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +139,8 @@
 				227C50BB2F6D3E5400103DF0 /* LandmarkInfoView.swift */,
 				22B47CDE2F78033A00AFC3F4 /* LocationDisabledBanner.swift */,
 				22B47CE02F7804C700AFC3F4 /* DeviceCornerRadius.swift */,
+				227BCFE430B04E7C0021F860 /* LookAroundViewModel.swift */,
+				227BCFE630B050840021F860 /* LookAroundButton.swift */,
 			);
 			path = "View&ViewModel";
 			sourceTree = "<group>";
@@ -369,9 +374,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227BCFE330B03FD20021F860 /* WikipediaSummaryCache.swift in Sources */,
 				22B47CDF2F78033A00AFC3F4 /* LocationDisabledBanner.swift in Sources */,
 				227C50C32F6EC4B300103DF0 /* Landmark.swift in Sources */,
 				22B47CDD2F78002B00AFC3F4 /* ContentViewModel.swift in Sources */,
+				227BCFE730B050840021F860 /* LookAroundButton.swift in Sources */,
+				227BCFE530B04E7C0021F860 /* LookAroundViewModel.swift in Sources */,
 				2240F6972FD4737F0075DC0D /* Style.swift in Sources */,
 				22198ED32CCD050700B6D54E /* LandmarkDTO.swift in Sources */,
 				22B47CE12F7804C700AFC3F4 /* DeviceCornerRadius.swift in Sources */,

@@ -77,7 +77,11 @@ struct MapView: View {
 		})
 		.mapControls {
 			MapUserLocationButton()
-			//MapCompass()
+			// by default MapKit hides these when they aren't useful (compass while north is up, pitch toggle when zoomed out)
+			MapPitchToggle() // 2D/3D
+				.mapControlVisibility(.visible)
+			MapCompass()
+				.mapControlVisibility(.visible)
 			//MapScaleView()
 		}
 	}

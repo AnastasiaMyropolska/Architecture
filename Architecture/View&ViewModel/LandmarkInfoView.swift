@@ -9,7 +9,18 @@ import SwiftUI
 
 /// Hero image with the title on top of it, followed by style, architect, dates and the actions
 struct LandmarkInfoView: View {
-	let viewModel: LandmarkInfoViewModel
+	let onDismiss: () -> Void
+
+	/// Created once, not in `body`, so loaded state survives re-renders (`body` re-runs on every drag frame of the overlay).
+	/// The presenter gives the overlay `.id(landmark.id)`, so selecting another landmark creates a new view and new view models
+	@State private var viewModel: LandmarkInfoViewModel
+	@State private var lookAroundViewModel: LookAroundViewModel
+
+	init(landmark: Landmark, onDismiss: @escaping () -> Void) {
+		self.onDismiss = onDismiss
+		_viewModel = State(initialValue: LandmarkInfoViewModel(landmark: landmark))
+		_lookAroundViewModel = State(initialValue: LookAroundViewModel(landmark: landmark))
+	}
 
 	var body: some View {
 		VStack(spacing: 0) {
@@ -20,6 +31,14 @@ struct LandmarkInfoView: View {
 					.font(.title2.bold())
 					.foregroundStyle(.white)
 					.padding()
+			}
+			.overlay(alignment: .topTrailing) {
+				// pinned to the right: dismiss, with Look Around right below it where available
+				VStack(spacing: 8) {
+					DismissButton(action: onDismiss)
+					LookAroundButton(viewModel: lookAroundViewModel)
+				}
+				.padding(14)
 			}
 			.frame(height: 250)
 			.clipped()
@@ -52,6 +71,10 @@ struct LandmarkInfoView: View {
 		}
 		.task {
 			await viewModel.loadDescription()
+		}
+		// loaded here, not in `LookAroundButton`: that view is empty until the scene is loaded, so a `.task` on it would never start
+		.task {
+			await lookAroundViewModel.loadScene()
 		}
 	}
 
@@ -111,6 +134,7 @@ struct LandmarkActions: View {
 		.controlSize(.large)
 	}
 }
+
 
 /// Wraps chips onto several lines
 struct FlowLayout: Layout {
