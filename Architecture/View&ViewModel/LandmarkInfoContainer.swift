@@ -1,5 +1,5 @@
 //
-//  MapOverlay.swift
+//  LandmarkInfoContainer.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 20.03.26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MapOverlay: View {
+struct LandmarkInfoContainer: View {
 	/// Only handed on to `LandmarkInfoView`, which owns the view models
 	private let selectedItem: Landmark
 
@@ -95,13 +95,13 @@ struct DismissButton: View {
 }
 
 /// Loads the first landmark from the bundled JSON and shows the overlay for it
-private struct MapOverlayPreview: View {
+private struct LandmarkInfoContainerPreview: View {
 	@State private var landmark: Landmark?
 
 	var body: some View {
 		Group {
 			if let landmark {
-				MapOverlay(selectedItem: landmark, onDismiss: {})
+				LandmarkInfoContainer(selectedItem: landmark, onDismiss: {})
 			} else {
 				ProgressView()
 			}
@@ -120,5 +120,5 @@ private struct MapOverlayPreview: View {
 }
 
 #Preview {
-	MapOverlayPreview()
+	LandmarkInfoContainerPreview()
 }

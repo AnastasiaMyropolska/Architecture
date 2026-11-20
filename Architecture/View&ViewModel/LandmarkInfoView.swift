@@ -33,12 +33,8 @@ struct LandmarkInfoView: View {
 					.padding()
 			}
 			.overlay(alignment: .topTrailing) {
-				// pinned to the right: dismiss, with Look Around right below it where available
-				VStack(spacing: 8) {
-					DismissButton(action: onDismiss)
-					LookAroundButton(viewModel: lookAroundViewModel)
-				}
-				.padding(14)
+				OverlayButtons(onDismiss: onDismiss, onDirections: viewModel.openDirections, lookAroundViewModel: lookAroundViewModel)
+					.padding(14)
 			}
 			.frame(height: 250)
 			.clipped()
@@ -63,7 +59,6 @@ struct LandmarkInfoView: View {
 				} else {
 					Spacer(minLength: 0)
 				}
-				LandmarkActions(onDirections: viewModel.openDirections)
 				WikiLink(url: viewModel.sourceURL)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
@@ -121,20 +116,66 @@ struct InfoRow: View {
 	}
 }
 
-/// Directions button at the bottom of the card
-struct LandmarkActions: View {
+/// Stack pinned to the top right of the card: dismiss, directions, and Look Around where available
+struct OverlayButtons: View {
+	let onDismiss: () -> Void
 	let onDirections: () -> Void
+	let lookAroundViewModel: LookAroundViewModel
 
 	var body: some View {
-		Button(action: onDirections) {
-			Label("Directions", systemImage: "arrow.triangle.turn.up.right.diamond.fill")
-				.frame(maxWidth: .infinity)
+		VStack(spacing: 8) {
+			DismissButton(action: onDismiss)
+			DirectionsButton(action: onDirections)
+			LookAroundButton(viewModel: lookAroundViewModel)
 		}
-		.buttonStyle(.glassProminent)
-		.controlSize(.large)
 	}
 }
 
+/// Loads the first landmark from the bundled JSON so Look Around can resolve its scene
+private struct OverlayButtonsPreview: View {
+	@State private var lookAroundViewModel: LookAroundViewModel?
+
+	var body: some View {
+		Group {
+			if let lookAroundViewModel {
+				OverlayButtons(onDismiss: {}, onDirections: {}, lookAroundViewModel: lookAroundViewModel)
+			} else {
+				ProgressView()
+			}
+		}
+		.padding()
+		.task {
+			guard let data = try? await ServerDataFetcher.fetchLocal(),
+				  let (landmarkDTOs, _) = try? await DTODecoder.decode(data: data),
+				  let first = landmarkDTOs.first.map({ Landmark.create(from: $0) }) else { return }
+			let viewModel = LookAroundViewModel(landmark: first)
+			lookAroundViewModel = viewModel
+			await viewModel.loadScene()
+		}
+	}
+}
+
+#Preview {
+	OverlayButtonsPreview()
+}
+
+/// Round directions button, styled like `DismissButton`, in the stack at the top right of the card
+struct DirectionsButton: View {
+	let action: () -> Void
+
+	var body: some View {
+		Button(action: action) {
+			Image(systemName: "arrow.triangle.turn.up.right.diamond.fill")
+				.font(.headline.weight(.medium))
+				// this symbol is wider than xmark and binoculars, so less padding keeps the circle the same size
+				.padding(4)
+		}
+		.buttonStyle(.glass)
+		.buttonBorderShape(.circle)
+		.controlSize(.regular)
+		.accessibilityLabel("Directions")
+	}
+}
 
 /// Wraps chips onto several lines
 struct FlowLayout: Layout {

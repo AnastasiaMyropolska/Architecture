@@ -58,7 +58,7 @@ struct MapView: View {
 		}
 		.overlay(alignment: .bottom) {
 			if showSheet, let selectedItem = viewModel.selectedLandmark {
-				MapOverlay(selectedItem: selectedItem,
+				LandmarkInfoContainer(selectedItem: selectedItem,
 						   onDismiss: {
 					viewModel.selectedLandmark = nil
 				})
