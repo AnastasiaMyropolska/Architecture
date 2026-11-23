@@ -8,8 +8,8 @@
 import Observation
 import MapKit
 
-/// Look Around is kept out of `LandmarkInfoViewModel` on purpose: `MKLookAroundScene` is a MapKit type,
-/// and a separate view model means `LandmarkInfoViewModel` doesn't have to import MapKit
+/// Look Around is kept out of `LandmarkViewModel` on purpose: `MKLookAroundScene` is a MapKit type,
+/// and a separate view model means `LandmarkViewModel` doesn't have to import MapKit
 @MainActor
 @Observable final class LookAroundViewModel {
 	private let landmark: Landmark

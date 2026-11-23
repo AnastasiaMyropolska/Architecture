@@ -6,4 +6,5 @@ SwiftUI app (MVVM) that shows architectural landmarks on a map.
 
 - Views never hold or receive model objects (e.g. `Landmark`). They only talk to view models.
 - A view that owns a view model creates it once, in its `init`, as `@State`. Never in `body`, which re-runs often and would drop loaded state.
+- A view may instead receive a ready-made view model from its parent. The parent view model creates it once (e.g. `MapViewModel` creates a `LandmarkViewModel` when a landmark is selected) and exposes it, so the view never needs the model object. The receiving view just stores it and does not create it.
 - Keep MapKit out of the model and out of view models where possible. Put MapKit-dependent code in extensions (e.g. `Landmark+MapItem.swift`) or in separate view models (e.g. `LookAroundViewModel`), and add a comment saying why.

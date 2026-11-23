@@ -57,13 +57,13 @@ struct MapView: View {
 			}
 		}
 		.overlay(alignment: .bottom) {
-			if showSheet, let selectedItem = viewModel.selectedLandmark {
-				LandmarkInfoContainer(selectedItem: selectedItem,
+			if showSheet, let landmarkViewModel = viewModel.landmarkViewModel {
+				LandmarkViewContainer(viewModel: landmarkViewModel,
 						   onDismiss: {
 					viewModel.selectedLandmark = nil
 				})
-				// a new overlay (and view model) per landmark, so loaded state never carries over to another one
-				.id(selectedItem.id)
+				// a new overlay per landmark, so view state never carries over to another one
+				.id(landmarkViewModel.landmarkID)
 				// Measure the 8pt bottom gap from the screen edge, not the home indicator
 				.ignoresSafeArea(.container, edges: .bottom)
 			}

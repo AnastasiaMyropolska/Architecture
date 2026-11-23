@@ -1,5 +1,5 @@
 //
-//  LandmarkInfoView.swift
+//  LandmarkView.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 20.03.26.
@@ -8,19 +8,12 @@
 import SwiftUI
 
 /// Hero image with the title on top of it, followed by style, architect, dates and the actions
-struct LandmarkInfoView: View {
+struct LandmarkView: View {
+	/// Received from the presenter, which creates it once per selected landmark,
+	/// so loaded state survives re-renders (`body` re-runs on every drag frame of the overlay)
+	let viewModel: LandmarkViewModel
+
 	let onDismiss: () -> Void
-
-	/// Created once, not in `body`, so loaded state survives re-renders (`body` re-runs on every drag frame of the overlay).
-	/// The presenter gives the overlay `.id(landmark.id)`, so selecting another landmark creates a new view and new view models
-	@State private var viewModel: LandmarkInfoViewModel
-	@State private var lookAroundViewModel: LookAroundViewModel
-
-	init(landmark: Landmark, onDismiss: @escaping () -> Void) {
-		self.onDismiss = onDismiss
-		_viewModel = State(initialValue: LandmarkInfoViewModel(landmark: landmark))
-		_lookAroundViewModel = State(initialValue: LookAroundViewModel(landmark: landmark))
-	}
 
 	var body: some View {
 		VStack(spacing: 0) {
@@ -33,7 +26,7 @@ struct LandmarkInfoView: View {
 					.padding()
 			}
 			.overlay(alignment: .topTrailing) {
-				OverlayButtons(onDismiss: onDismiss, onDirections: viewModel.openDirections, lookAroundViewModel: lookAroundViewModel)
+				OverlayButtons(onDismiss: onDismiss, onDirections: viewModel.openDirections, lookAroundViewModel: viewModel.lookAround)
 					.padding(14)
 			}
 			.frame(height: 250)
@@ -69,7 +62,7 @@ struct LandmarkInfoView: View {
 		}
 		// loaded here, not in `LookAroundButton`: that view is empty until the scene is loaded, so a `.task` on it would never start
 		.task {
-			await lookAroundViewModel.loadScene()
+			await viewModel.lookAround.loadScene()
 		}
 	}
 

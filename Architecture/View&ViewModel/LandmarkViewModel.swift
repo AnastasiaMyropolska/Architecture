@@ -1,5 +1,5 @@
 //
-//  LandmarkInfoViewModel.swift
+//  LandmarkViewModel.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 09.04.26.
@@ -9,12 +9,16 @@ import Observation
 import Foundation
 
 @MainActor
-@Observable final class LandmarkInfoViewModel {
+@Observable final class LandmarkViewModel {
 
 	private let landmark: Landmark
 
+	/// Look Around for the same landmark; created here so the view receives both view models together
+	let lookAround: LookAroundViewModel
+
 	init(landmark: Landmark) {
 		self.landmark = landmark
+		lookAround = LookAroundViewModel(landmark: landmark)
 	}
 
 	var landmarkID: Landmark.ID {

@@ -1,5 +1,5 @@
 //
-//  LandmarkInfoContainer.swift
+//  LandmarkViewContainer.swift
 //  Architecture
 //
 //  Created by Anastasia Myropolska on 20.03.26.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct LandmarkInfoContainer: View {
-	/// Only handed on to `LandmarkInfoView`, which owns the view models
-	private let selectedItem: Landmark
+struct LandmarkViewContainer: View {
+	/// Only handed on to `LandmarkView`
+	private let viewModel: LandmarkViewModel
 
 	private let baseOffset: CGFloat = 0
 
@@ -19,13 +19,13 @@ struct LandmarkInfoContainer: View {
 
 	@State private var shouldDismiss = false
 
-	init(selectedItem: Landmark, onDismiss: @escaping () -> Void) {
-		self.selectedItem = selectedItem
+	init(viewModel: LandmarkViewModel, onDismiss: @escaping () -> Void) {
+		self.viewModel = viewModel
 		self.onDismiss = onDismiss
 	}
 
 	var body: some View {
-		LandmarkInfoView(landmark: selectedItem, onDismiss: { shouldDismiss = true })
+		LandmarkView(viewModel: viewModel, onDismiss: { shouldDismiss = true })
 		.overlay(alignment: .top) {
 			DragIndicator()
 		}
@@ -95,13 +95,13 @@ struct DismissButton: View {
 }
 
 /// Loads the first landmark from the bundled JSON and shows the overlay for it
-private struct LandmarkInfoContainerPreview: View {
-	@State private var landmark: Landmark?
+private struct LandmarkViewContainerPreview: View {
+	@State private var viewModel: LandmarkViewModel?
 
 	var body: some View {
 		Group {
-			if let landmark {
-				LandmarkInfoContainer(selectedItem: landmark, onDismiss: {})
+			if let viewModel {
+				LandmarkViewContainer(viewModel: viewModel, onDismiss: {})
 			} else {
 				ProgressView()
 			}
@@ -114,11 +114,11 @@ private struct LandmarkInfoContainerPreview: View {
 			let styleIndexes = first.styleIndexes
 			let styles = categoryDTOs.map { Style.create(from: $0) }
 			first.styles = styles.filter { styleIndexes.contains($0.index) }
-			landmark = first
+			viewModel = LandmarkViewModel(landmark: first)
 		}
 	}
 }
 
 #Preview {
-	LandmarkInfoContainerPreview()
+	LandmarkViewContainerPreview()
 }

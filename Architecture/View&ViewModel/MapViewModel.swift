@@ -22,15 +22,22 @@ import MapKit
 
 	private var _selectedLandmark: Landmark?
 
+	/// View model for the selected landmark's overlay; created once per selection,
+	/// so the views receive it and never need the `Landmark` itself
+	private(set) var landmarkViewModel: LandmarkViewModel?
+
 	// The selected landmark, with its styles resolved once when it is selected
 	var selectedLandmark: Landmark? {
 		get {
 			_selectedLandmark
 		}
 		set {
+			// Selecting the same landmark again must not drop the loaded state of its view models
+			guard newValue?.id != _selectedLandmark?.id else { return }
 			var landmark = newValue
 			landmark?.styles = styles.filter { newValue?.styleIndexes.contains($0.index) == true }
 			_selectedLandmark = landmark
+			landmarkViewModel = landmark.map { LandmarkViewModel(landmark: $0) }
 		}
 	}
 
