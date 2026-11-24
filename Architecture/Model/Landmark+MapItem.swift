@@ -11,7 +11,7 @@ import MapKit
 extension Landmark {
 	// todo: is this efficient? move to extension, remove MapKit reference
 	func mapItem() -> MKMapItem {
-		return MKMapItem(placemark: MKPlacemark(coordinate: location))
+		return MKMapItem(location: CLLocation(latitude: location.latitude, longitude: location.longitude), address: nil)
 	}
 
 	/// The Look Around scene at the landmark's location; nil if Look Around is not available there (or the request failed or was cancelled)

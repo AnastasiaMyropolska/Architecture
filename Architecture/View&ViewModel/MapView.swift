@@ -92,7 +92,7 @@ struct MapView: View {
 		let overlayHeight: CGFloat = 400
 		
 		// Convert the marker's coordinate to screen position
-		let markerCoordinate = selectedMarker.placemark.coordinate
+		let markerCoordinate = selectedMarker.location.coordinate
 		let markerScreenY = coordinateToScreenY(
 			coordinate: markerCoordinate,
 			mapRect: context.rect,
@@ -133,8 +133,7 @@ struct MapView: View {
 	private func coordinateToScreenY(coordinate: CLLocationCoordinate2D, mapRect: MKMapRect, mapFrame: CGRect) -> CGFloat {
 		let mapPoint = MKMapPoint(coordinate)
 		
-		// Calculate relative position in map rect (0...1)
-		let relativeX = (mapPoint.x - mapRect.origin.x) / mapRect.size.width
+		// Calculate relative vertical position in map rect (0...1)
 		let relativeY = (mapPoint.y - mapRect.origin.y) / mapRect.size.height
 		
 		// Convert to screen coordinates
